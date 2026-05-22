@@ -322,7 +322,7 @@ export function ResumeChatWidget() {
 
       <motion.button
         animate={{ opacity: 1, y: 0 }}
-        className="surface pointer-events-auto mt-3 inline-flex min-h-14 items-center gap-3 rounded-full px-4 py-3 text-left text-white"
+        className="pointer-events-auto mt-3 inline-flex min-h-14 items-center gap-3 rounded-full border border-white/14 bg-[#0b121c]/94 px-4 py-3 text-left text-white shadow-[0_18px_48px_rgba(0,0,0,0.28)] transition-colors hover:border-cyan-100/22 hover:bg-[#101925]"
         initial={{ opacity: 0, y: 14 }}
         onClick={() => setIsOpen(true)}
         transition={
@@ -332,12 +332,14 @@ export function ResumeChatWidget() {
         }
         type="button"
       >
-        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-100 text-slate-950">
+        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-100 text-slate-950 shadow-[0_10px_24px_rgba(140,216,255,0.2)]">
           <MessageSquareText className="h-4.5 w-4.5" />
         </span>
         <span className="min-w-0">
-          <span className="block text-sm font-semibold">Ask the resume</span>
-          <span className="block text-xs text-white/48">
+          <span className="block text-sm font-semibold tracking-[0.01em] text-white">
+            Ask the resume
+          </span>
+          <span className="block text-xs text-white/72">
             Recruiter-ready answers from the CV
           </span>
         </span>
