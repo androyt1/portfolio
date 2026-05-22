@@ -23,20 +23,54 @@ const focusPoints = [
   'Performance tuning, design systems, and production delivery quality',
 ] as const;
 
+const heroParticles = [
+  { delay: 0, driftX: 28, driftY: -22, duration: 16, left: '7%', opacity: 0.7, size: 7, top: '16%' },
+  { delay: 0.8, driftX: -24, driftY: 20, duration: 18, left: '18%', opacity: 0.58, size: 5, top: '31%' },
+  { delay: 1.1, driftX: 22, driftY: -16, duration: 14, left: '28%', opacity: 0.5, size: 4, top: '12%' },
+  { delay: 0.3, driftX: -32, driftY: 18, duration: 19, left: '42%', opacity: 0.6, size: 6, top: '24%' },
+  { delay: 1.5, driftX: 20, driftY: -14, duration: 15, left: '56%', opacity: 0.52, size: 4, top: '10%' },
+  { delay: 0.4, driftX: -20, driftY: 18, duration: 17, left: '64%', opacity: 0.66, size: 7, top: '28%' },
+  { delay: 0.9, driftX: 24, driftY: -18, duration: 20, left: '76%', opacity: 0.55, size: 5, top: '18%' },
+  { delay: 1.2, driftX: -18, driftY: 22, duration: 16, left: '84%', opacity: 0.48, size: 4, top: '36%' },
+] as const;
+
+const heroTrails = [
+  { delay: 0, duration: 20, left: '14%', rotation: -8, top: '20%', width: '12rem' },
+  { delay: 0.7, duration: 24, left: '48%', rotation: 6, top: '12%', width: '10rem' },
+  { delay: 1.2, duration: 18, left: '68%', rotation: -5, top: '30%', width: '9rem' },
+] as const;
+
 export function HeroSection() {
   const { allowHeroMotion } = useDeviceProfile();
   const [headlinePrimary, headlineSecondary] = siteContent.headline.split('. ');
   const ease = [0.22, 1, 0.36, 1] as const;
+  const particleMotion = (delay: number, duration: number, driftX: number, driftY: number) =>
+    allowHeroMotion
+      ? {
+          animate: {
+            opacity: [0.28, 0.88, 0.34],
+            scale: [0.92, 1.12, 0.96],
+            x: [0, driftX, 0],
+            y: [0, driftY, 0],
+          },
+          transition: {
+            delay,
+            duration,
+            ease: 'easeInOut' as const,
+            repeat: Number.POSITIVE_INFINITY,
+          },
+        }
+      : {};
   const ambientFloatA = allowHeroMotion
     ? {
         animate: {
-          opacity: [0.2, 0.34, 0.2],
-          scale: [1, 1.08, 1],
-          x: [0, 42, 0],
-          y: [0, -18, 0],
+          opacity: [0.32, 0.52, 0.32],
+          scale: [1, 1.1, 1],
+          x: [0, 54, 0],
+          y: [0, -24, 0],
         },
         transition: {
-          duration: 18,
+          duration: 15,
           ease: 'easeInOut' as const,
           repeat: Number.POSITIVE_INFINITY,
         },
@@ -45,13 +79,13 @@ export function HeroSection() {
   const ambientFloatB = allowHeroMotion
     ? {
         animate: {
-          opacity: [0.16, 0.28, 0.16],
-          scale: [1.02, 0.96, 1.02],
-          x: [0, -36, 0],
-          y: [0, 24, 0],
+          opacity: [0.22, 0.42, 0.22],
+          scale: [1.04, 0.96, 1.04],
+          x: [0, -44, 0],
+          y: [0, 30, 0],
         },
         transition: {
-          duration: 22,
+          duration: 18,
           ease: 'easeInOut' as const,
           repeat: Number.POSITIVE_INFINITY,
         },
@@ -60,11 +94,11 @@ export function HeroSection() {
   const ambientLine = allowHeroMotion
     ? {
         animate: {
-          opacity: [0.12, 0.3, 0.12],
-          x: [-18, 26, -18],
+          opacity: [0.2, 0.42, 0.2],
+          x: [-28, 34, -28],
         },
         transition: {
-          duration: 16,
+          duration: 12,
           ease: 'easeInOut' as const,
           repeat: Number.POSITIVE_INFINITY,
         },
@@ -89,22 +123,84 @@ export function HeroSection() {
   return (
     <section className="relative overflow-hidden pt-24 sm:pt-28 lg:pt-32" id="top">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_50%_0%,rgba(130,190,255,0.14),transparent_46%)]" />
+        <div className="absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_50%_0%,rgba(130,190,255,0.18),transparent_46%)]" />
         <motion.div
-          className="absolute left-[-4%] top-24 h-52 w-52 rounded-full bg-cyan-200/14 blur-[110px]"
+          className="absolute left-[-4%] top-24 h-56 w-56 rounded-full bg-cyan-200/18 blur-[110px]"
           {...ambientFloatA}
         />
         <motion.div
-          className="absolute right-[2%] top-[11%] h-72 w-72 rounded-full bg-blue-100/10 blur-[130px]"
+          className="absolute right-[2%] top-[11%] h-80 w-80 rounded-full bg-blue-100/14 blur-[132px]"
           {...ambientFloatB}
         />
+        <div className="absolute inset-x-[6%] top-[8%] h-[24rem] overflow-hidden">
+          {heroTrails.map((trail) => (
+            <motion.span
+              animate={
+                allowHeroMotion
+                  ? {
+                      opacity: [0.16, 0.34, 0.16],
+                      x: [-10, 24, -10],
+                    }
+                  : undefined
+              }
+              className="absolute hidden h-px bg-gradient-to-r from-transparent via-cyan-100/38 to-transparent lg:block"
+              key={`${trail.left}-${trail.top}`}
+              style={{
+                left: trail.left,
+                top: trail.top,
+                transform: `rotate(${trail.rotation}deg)`,
+                width: trail.width,
+              }}
+              transition={
+                allowHeroMotion
+                  ? {
+                      delay: trail.delay,
+                      duration: trail.duration,
+                      ease: 'easeInOut',
+                      repeat: Number.POSITIVE_INFINITY,
+                    }
+                  : undefined
+              }
+            />
+          ))}
+
+          {heroParticles.map((particle) => (
+            <motion.span
+              className="absolute"
+              key={`${particle.left}-${particle.top}`}
+              style={{
+                left: particle.left,
+                top: particle.top,
+              }}
+              {...particleMotion(
+                particle.delay,
+                particle.duration,
+                particle.driftX,
+                particle.driftY,
+              )}
+            >
+              <span
+                className="absolute -inset-2 rounded-full bg-cyan-100/10 blur-md"
+                style={{ opacity: particle.opacity * 0.9 }}
+              />
+              <span
+                className="absolute rounded-full border border-cyan-100/20 bg-cyan-100/75 shadow-[0_0_18px_rgba(140,216,255,0.4)]"
+                style={{
+                  height: `${particle.size}px`,
+                  opacity: particle.opacity,
+                  width: `${particle.size}px`,
+                }}
+              />
+            </motion.span>
+          ))}
+        </div>
         <motion.div
           className="absolute inset-x-[12%] top-[20%] hidden h-px bg-gradient-to-r from-transparent via-white/16 to-transparent lg:block"
           {...ambientLine}
         />
         <motion.div
-          className="absolute left-[8%] top-[14%] hidden h-56 w-56 rounded-full border border-white/[0.06] lg:block"
-          animate={allowHeroMotion ? { rotate: [0, 10, 0], scale: [1, 1.02, 1] } : undefined}
+          className="absolute left-[8%] top-[14%] hidden h-56 w-56 rounded-full border border-cyan-100/[0.08] lg:block"
+          animate={allowHeroMotion ? { opacity: [0.12, 0.28, 0.12], rotate: [0, 12, 0], scale: [1, 1.03, 1] } : undefined}
           transition={
             allowHeroMotion
               ? {
@@ -117,7 +213,7 @@ export function HeroSection() {
         />
       </div>
 
-      <Container className="grid gap-10 pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.74fr)] lg:items-center lg:pb-18 xl:gap-12">
+      <Container className="grid gap-10 pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(340px,0.7fr)] lg:items-center lg:pb-18 xl:gap-12">
         <div className="relative z-10 max-w-2xl space-y-8">
           <motion.div
             className="surface inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs uppercase tracking-[0.32em] text-white/70"
@@ -201,7 +297,7 @@ export function HeroSection() {
         </div>
 
         <motion.div
-          className="surface-strong relative overflow-hidden rounded-[2.2rem] lg:justify-self-end lg:w-full lg:max-w-[31rem]"
+          className="surface-strong relative overflow-hidden rounded-[2.2rem] lg:justify-self-end lg:w-full lg:max-w-[29rem]"
           {...fadeScale}
         >
           <div className="noise-mask absolute inset-0 opacity-80" />
@@ -209,7 +305,7 @@ export function HeroSection() {
           <div className="relative p-5 pb-0 sm:p-6 sm:pb-0">
             <div className="absolute inset-x-6 top-4 h-32 rounded-full bg-cyan-100/10 blur-[96px]" />
 
-            <div className="relative mx-auto max-w-[18.5rem] sm:max-w-[20.75rem]">
+            <div className="relative mx-auto max-w-[16.5rem] sm:max-w-[18.75rem]">
               <div className="relative aspect-[0.78] overflow-hidden rounded-[1.9rem] border border-white/10 bg-[#0d141d] shadow-[0_28px_72px_rgba(0,0,0,0.34)]">
                 <img
                   alt={siteContent.name}
