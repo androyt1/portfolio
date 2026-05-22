@@ -1,4 +1,4 @@
-import photoFile from './photo.png';
+import photoFile from './photo.webp';
 import resumeFile from './resume.pdf';
 
 export const navigation = [
