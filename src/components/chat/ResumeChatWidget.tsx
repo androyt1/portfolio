@@ -306,7 +306,7 @@ export function ResumeChatWidget() {
                   </a>
 
                   <button
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-100 disabled:cursor-not-allowed disabled:bg-white/28 disabled:text-white/60"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-cyan-100/70 bg-cyan-100 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white disabled:cursor-not-allowed disabled:border-white/10 disabled:bg-white/14 disabled:text-white/52"
                     disabled={!draft.trim() || isPending}
                     type="submit"
                   >
