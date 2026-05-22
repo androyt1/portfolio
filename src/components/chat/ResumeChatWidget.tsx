@@ -172,7 +172,7 @@ export function ResumeChatWidget() {
         {isOpen ? (
           <motion.section
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            className={`surface-strong pointer-events-auto flex max-h-[min(36rem,calc(100vh-5rem))] flex-col overflow-hidden rounded-[1.9rem] ${panelWidthClass}`}
+            className={`surface-strong pointer-events-auto flex max-h-[min(36rem,calc(100vh-5rem))] flex-col overflow-hidden rounded-[1.9rem] bg-[#08111a]/96 ${panelWidthClass}`}
             exit={{ opacity: 0, scale: 0.98, y: 14 }}
             initial={{ opacity: 0, scale: 0.98, y: 16 }}
             transition={
@@ -191,7 +191,7 @@ export function ResumeChatWidget() {
                   <h2 className="mt-3 text-lg font-semibold text-white">
                     Chat with Andrew&apos;s resume
                   </h2>
-                  <p className="mt-2 text-sm leading-6 text-white/56">
+                  <p className="mt-2 text-sm leading-6 text-white/72">
                     Answers stay grounded in the uploaded resume and portfolio profile.
                   </p>
                 </div>
@@ -206,8 +206,8 @@ export function ResumeChatWidget() {
                 </button>
               </div>
 
-              <div className="mt-4 flex items-center gap-2 text-xs text-white/42">
-                <FileText className="h-3.5 w-3.5 text-cyan-100/76" />
+              <div className="mt-4 flex items-center gap-2 text-xs text-white/64">
+                <FileText className="h-3.5 w-3.5 text-cyan-100/84" />
                 <span>Source locked to resume.pdf</span>
               </div>
             </div>
@@ -220,7 +220,7 @@ export function ResumeChatWidget() {
                 <div className="grid gap-2">
                   {resumeChatPromptSuggestions.map((prompt) => (
                     <button
-                      className="rounded-[1.2rem] border border-white/10 bg-white/4 px-4 py-3 text-left text-sm leading-6 text-white/74 transition hover:bg-white/8 hover:text-white"
+                      className="rounded-[1.2rem] border border-white/12 bg-white/[0.07] px-4 py-3 text-left text-sm leading-6 text-white/88 transition hover:border-cyan-100/18 hover:bg-white/[0.11] hover:text-white"
                       key={prompt}
                       onClick={() => void submitMessage(prompt)}
                       type="button"
@@ -242,7 +242,7 @@ export function ResumeChatWidget() {
                     <div
                       className={`max-w-[88%] rounded-[1.4rem] px-4 py-3 text-sm leading-6 ${
                         isAssistant
-                          ? 'border border-white/10 bg-white/[0.04] text-white/76'
+                          ? 'border border-white/12 bg-white/[0.07] text-white/88'
                           : 'bg-white text-slate-950'
                       }`}
                     >
@@ -252,7 +252,7 @@ export function ResumeChatWidget() {
                         <div className="mt-3 flex flex-wrap gap-2">
                           {message.citations.map((citation) => (
                             <span
-                              className="rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[11px] uppercase tracking-[0.18em] text-cyan-100/72"
+                              className="rounded-full border border-cyan-100/18 bg-black/28 px-2.5 py-1 text-[11px] uppercase tracking-[0.18em] text-cyan-100/84"
                               key={`${message.id}-${citation.id}`}
                             >
                               {citation.title}
@@ -267,7 +267,7 @@ export function ResumeChatWidget() {
 
               {isPending ? (
                 <div className="flex justify-start">
-                  <div className="inline-flex items-center gap-2 rounded-[1.4rem] border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white/62">
+                  <div className="inline-flex items-center gap-2 rounded-[1.4rem] border border-white/12 bg-white/[0.07] px-4 py-3 text-sm text-white/80">
                     <LoaderCircle className="h-4 w-4 animate-spin text-cyan-100" />
                     Thinking through the resume…
                   </div>
@@ -285,7 +285,7 @@ export function ResumeChatWidget() {
               <form className="space-y-3" onSubmit={handleSubmit}>
                 <div className="rounded-[1.4rem] border border-white/10 bg-black/18 p-3">
                   <textarea
-                    className="max-h-28 min-h-20 w-full resize-none border-0 bg-transparent text-sm leading-6 text-white outline-none placeholder:text-white/32"
+                    className="max-h-28 min-h-20 w-full resize-none border-0 bg-transparent text-sm leading-6 text-white outline-none placeholder:text-white/48"
                     disabled={isPending}
                     onChange={(event) => setDraft(event.target.value)}
                     onKeyDown={(event) => void handleKeyDown(event)}
@@ -298,7 +298,7 @@ export function ResumeChatWidget() {
 
                 <div className="flex items-center justify-between gap-3">
                   <a
-                    className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.24em] text-white/42 transition hover:text-cyan-100"
+                    className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.24em] text-white/60 transition hover:text-cyan-100"
                     href={`mailto:${siteContent.email}`}
                   >
                     <Mail className="h-3.5 w-3.5" />
@@ -306,7 +306,7 @@ export function ResumeChatWidget() {
                   </a>
 
                   <button
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-100 disabled:cursor-not-allowed disabled:bg-white/20 disabled:text-white/45"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-100 disabled:cursor-not-allowed disabled:bg-white/28 disabled:text-white/60"
                     disabled={!draft.trim() || isPending}
                     type="submit"
                   >
