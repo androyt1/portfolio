@@ -14,9 +14,9 @@ export const siteContent = {
   name: 'Andrew Aghoghovwia',
   role: 'Senior Frontend Engineer & AI Specialist',
   headline:
-    'Premium frontend for ambitious products. AI-native systems that feel usable.',
+    'Production AI systems with a frontend edge. RAG pipelines. Agentic workflows. Interfaces that make AI feel natural.',
   summary:
-    'Senior frontend engineer with 7+ years building fast, reliable, and visually polished web applications. I combine React and TypeScript architecture with modern AI product integration to turn complex ideas into smooth, high-performance user experiences.',
+    'Senior engineer with 7+ years shipping production-grade products. I now specialise in AI engineering - building RAG pipelines, agentic systems, and LLM-powered features using LangChain, LangGraph, and OpenAI - with the frontend craft to make them feel seamless to users.',
   availability:
     'Open to senior frontend, full-stack, and AI product engineering roles',
   location: 'Carshalton, UK · Remote / Hybrid',
@@ -57,7 +57,7 @@ export const aboutHighlights = [
   {
     title: 'AI product integration',
     copy:
-      'Hands-on with OpenAI APIs, Gemini Vision, RAG pipelines, and vector databases such as Pinecone and Weaviate for context-aware product experiences.',
+      'Hands-on with LangChain, LangGraph, OpenAI, RAG pipelines, and vector databases such as Pinecone and Weaviate for context-aware product experiences.',
   },
   {
     title: 'Measured delivery impact',

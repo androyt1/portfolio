@@ -11,6 +11,12 @@ const heroStack = [
   'TypeScript',
   'Next.js',
   'OpenAI',
+  'LangChain',
+  'LangGraph',
+  'RAG',
+  'Pinecone',
+  'LangSmith',
+  'Python',
   'Tailwind',
   'Storybook',
   'Supabase',
@@ -42,7 +48,12 @@ const heroTrails = [
 
 export function HeroSection() {
   const { allowHeroMotion } = useDeviceProfile();
-  const [headlinePrimary, headlineSecondary] = siteContent.headline.split('. ');
+  const headlineSegments = siteContent.headline.split('. ').filter(Boolean);
+  const headlinePrimary = headlineSegments.at(0)?.replace(/\.$/, '') ?? siteContent.headline;
+  const headlineSecondary = headlineSegments
+    .slice(1)
+    .join('. ')
+    .trim();
   const ease = [0.22, 1, 0.36, 1] as const;
   const particleMotion = (delay: number, duration: number, driftX: number, driftY: number) =>
     allowHeroMotion
@@ -329,11 +340,12 @@ export function HeroSection() {
                 {siteContent.name}
               </h2>
               <p className="mt-3 max-w-md text-sm leading-7 text-white/70">
-                Frontend engineer focused on product polish, scalable systems, and
-                AI-enhanced experiences that still feel clear and fast to use.
+                AI engineer focused on production-ready RAG systems, agentic
+                workflows, and frontend experiences that make complex model behavior
+                feel clear and fast to use.
               </p>
               <div className="mt-4 inline-flex items-center rounded-full border border-white/10 bg-white/[0.05] px-3 py-2 text-[11px] uppercase tracking-[0.32em] text-white/52">
-                Product polish + performance
+                AI systems + product polish
               </div>
             </div>
           </div>

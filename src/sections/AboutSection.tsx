@@ -28,20 +28,19 @@ export function AboutSection() {
         <SectionHeading
           description="This section is meant to make the senior-level signal obvious quickly: product judgment, systems thinking, and the kind of execution quality that survives scale."
           eyebrow="About"
-          title="I build polished interfaces because I care about the underlying engineering just as much as the visual finish."
+          title="I build AI products that work in production - not just demos. My background in frontend engineering means I can own the full stack: from LLM orchestration and RAG pipelines to the interface the user actually touches."
         />
 
         <div className="grid gap-6 xl:grid-cols-12">
           <Reveal className="surface-strong rounded-[2rem] p-7 sm:p-8 xl:col-span-7">
             <p className="font-display text-3xl text-white sm:text-4xl">
-              Senior frontend work with product taste, system clarity, and delivery discipline.
+              Production AI engineering with frontend-level usability and delivery discipline.
             </p>
             <p className="mt-5 max-w-3xl text-base leading-8 text-white/68">
-              My strongest work happens where interface quality and engineering rigor
-              both matter. That usually means enterprise dashboards, AI-enhanced
-              experiences, performance-sensitive launches, and design systems that
-              stay coherent when multiple engineers are moving fast inside the same
-              codebase.
+              My strongest work happens where AI capability and product quality
+              both matter. That usually means LLM-powered workflows, retrieval
+              systems, agent orchestration, and interfaces that help users trust
+              what the system is doing instead of fighting it.
             </p>
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
@@ -49,8 +48,8 @@ export function AboutSection() {
                   Typical scope
                 </p>
                 <p className="mt-3 text-lg text-white/80">
-                  React and Next.js products, AI copilots, internal platforms,
-                  commerce builds, performance work, and design-system execution.
+                  RAG systems, agentic tools, LLM-powered product workflows,
+                  internal platforms, and frontend architecture for complex applications.
                 </p>
               </div>
               <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
@@ -59,7 +58,7 @@ export function AboutSection() {
                 </p>
                 <p className="mt-3 text-lg text-white/80">
                   Clear tradeoffs, strong implementation detail, and a bias toward
-                  shipping the cleanest version of the idea first.
+                  shipping AI features that stay reliable under real product use.
                 </p>
               </div>
             </div>
