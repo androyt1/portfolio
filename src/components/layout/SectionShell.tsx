@@ -14,7 +14,7 @@ export function SectionShell({
 }: SectionShellProps) {
   return (
     <section
-      className={cn('relative py-16 sm:py-20 lg:py-24', className)}
+      className={cn('relative scroll-mt-24 py-16 sm:scroll-mt-28 sm:py-20 lg:scroll-mt-32 lg:py-24', className)}
       style={{
         containIntrinsicSize: '1px 960px',
         contentVisibility: 'auto',
