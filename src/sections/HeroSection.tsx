@@ -370,10 +370,10 @@ export function HeroSection() {
                 <p className="text-xs uppercase tracking-[0.35em] text-white/38">
                   Core stack
                 </p>
-                <div className="mt-4 flex flex-wrap gap-2">
+                <div className="mt-4 grid gap-2 lg:grid-cols-2">
                   {heroStack.map((item) => (
                     <span
-                      className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/70"
+                      className="flex min-h-10 items-center rounded-[1rem] border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/70"
                       key={item}
                     >
                       {item}
