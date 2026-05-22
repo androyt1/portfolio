@@ -56,7 +56,7 @@ export function ProjectsSection() {
                         <span className="h-2.5 w-2.5 rounded-full bg-white/18" />
                       </div>
                       <div className="grid gap-3 sm:grid-cols-2">
-                        <div className="rounded-2xl border border-white/12 bg-black/18 p-4 backdrop-blur-md">
+                        <div className="rounded-2xl border border-white/12 bg-black/18 p-4">
                           <p className="text-xs uppercase tracking-[0.35em] text-white/36">
                             Focus
                           </p>
@@ -64,7 +64,7 @@ export function ProjectsSection() {
                             {project.highlight}
                           </p>
                         </div>
-                        <div className="rounded-2xl border border-white/12 bg-black/18 p-4 backdrop-blur-md">
+                        <div className="rounded-2xl border border-white/12 bg-black/18 p-4">
                           <p className="text-xs uppercase tracking-[0.35em] text-white/36">
                             Result
                           </p>

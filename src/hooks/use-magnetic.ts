@@ -1,17 +1,12 @@
-import { useCallback, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
-import { usePrefersReducedMotion } from '@/hooks/use-prefers-reduced-motion';
+import { useDeviceProfile } from '@/hooks/use-device-profile';
 
 export function useMagnetic<T extends HTMLElement>() {
   const ref = useRef<T | null>(null);
   const frame = useRef<number | null>(null);
-  const reducedMotion = usePrefersReducedMotion();
-  const finePointer = useMemo(
-    () =>
-      typeof window !== 'undefined' &&
-      window.matchMedia('(pointer: fine)').matches,
-    [],
-  );
+  const { coarsePointer, lowPower, reducedMotion } = useDeviceProfile();
+  const allowMagnetic = !coarsePointer && !lowPower && !reducedMotion;
 
   const animate = useCallback(
     (x: number, y: number) => {
@@ -34,9 +29,26 @@ export function useMagnetic<T extends HTMLElement>() {
     [],
   );
 
+  useEffect(() => {
+    if (allowMagnetic || !ref.current) {
+      return;
+    }
+
+    ref.current.style.transform = 'translate3d(0, 0, 0)';
+  }, [allowMagnetic]);
+
+  useEffect(
+    () => () => {
+      if (frame.current) {
+        cancelAnimationFrame(frame.current);
+      }
+    },
+    [],
+  );
+
   const onPointerMove = useCallback(
     (event: React.PointerEvent<T>) => {
-      if (!finePointer || reducedMotion || !ref.current) {
+      if (!allowMagnetic || !ref.current) {
         return;
       }
 
@@ -46,12 +58,16 @@ export function useMagnetic<T extends HTMLElement>() {
 
       animate(x * 0.12, y * 0.12);
     },
-    [animate, finePointer, reducedMotion],
+    [allowMagnetic, animate],
   );
 
   const onPointerLeave = useCallback(() => {
+    if (!allowMagnetic) {
+      return;
+    }
+
     animate(0, 0);
-  }, [animate]);
+  }, [allowMagnetic, animate]);
 
   return { ref, onPointerLeave, onPointerMove };
 }

@@ -4,6 +4,7 @@ import { ArrowDownRight, Download, Mail, MapPin, Sparkles } from 'lucide-react';
 import { Container } from '@/components/layout/Container';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { siteContent } from '@/data/portfolio';
+import { useDeviceProfile } from '@/hooks/use-device-profile';
 
 const heroStack = [
   'React',
@@ -23,7 +24,24 @@ const focusPoints = [
 ] as const;
 
 export function HeroSection() {
+  const { allowHeroMotion } = useDeviceProfile();
   const [headlinePrimary, headlineSecondary] = siteContent.headline.split('. ');
+  const ease = [0.22, 1, 0.36, 1] as const;
+  const fadeUp = (delay = 0, y = 24) =>
+    allowHeroMotion
+      ? {
+          animate: { opacity: 1, y: 0 },
+          initial: { opacity: 0, y },
+          transition: { delay, duration: 0.8, ease },
+        }
+      : {};
+  const fadeScale = allowHeroMotion
+    ? {
+        animate: { opacity: 1, scale: 1, y: 0 },
+        initial: { opacity: 0, scale: 0.985, y: 18 },
+        transition: { delay: 0.08, duration: 0.86, ease },
+      }
+    : {};
 
   return (
     <section className="relative overflow-hidden pt-24 sm:pt-28 lg:pt-32" id="top">
@@ -31,9 +49,7 @@ export function HeroSection() {
         <div className="relative z-10 max-w-2xl space-y-8">
           <motion.div
             className="surface inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs uppercase tracking-[0.32em] text-white/70"
-            initial={{ opacity: 0, y: 18 }}
-            transition={{ duration: 0.7 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...fadeUp(0, 18)}
           >
             <Sparkles className="h-3.5 w-3.5 text-cyan-100" />
             {siteContent.availability}
@@ -42,9 +58,7 @@ export function HeroSection() {
           <div className="space-y-4">
             <motion.p
               className="text-sm uppercase tracking-[0.4em] text-white/45"
-              initial={{ opacity: 0, y: 16 }}
-              transition={{ duration: 0.7, delay: 0.05 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              {...fadeUp(0.05, 16)}
             >
               {siteContent.role}
             </motion.p>
@@ -52,9 +66,7 @@ export function HeroSection() {
             <div className="space-y-3">
               <motion.h1
                 className="heading-balance text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-[4.45rem] lg:leading-[0.96]"
-                initial={{ opacity: 0, y: 34 }}
-                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                whileInView={{ opacity: 1, y: 0 }}
+                {...fadeUp(0.08, 32)}
               >
                 {headlinePrimary}.
               </motion.h1>
@@ -62,13 +74,7 @@ export function HeroSection() {
               {headlineSecondary ? (
                 <motion.p
                   className="heading-balance font-display text-4xl italic leading-none text-cyan-50 sm:text-5xl lg:text-[3.9rem]"
-                  initial={{ opacity: 0, y: 28 }}
-                  transition={{
-                    duration: 0.9,
-                    ease: [0.22, 1, 0.36, 1],
-                    delay: 0.08,
-                  }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  {...fadeUp(0.14, 24)}
                 >
                   {headlineSecondary}
                 </motion.p>
@@ -78,18 +84,14 @@ export function HeroSection() {
 
           <motion.p
             className="max-w-xl text-base leading-8 text-white/65 sm:text-lg"
-            initial={{ opacity: 0, y: 24 }}
-            transition={{ duration: 0.85, delay: 0.14 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...fadeUp(0.18)}
           >
             {siteContent.summary}
           </motion.p>
 
           <motion.div
             className="flex flex-col gap-3 sm:flex-row"
-            initial={{ opacity: 0, y: 24 }}
-            transition={{ duration: 0.85, delay: 0.2 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...fadeUp(0.24)}
           >
             <MagneticButton href="#projects" icon={<ArrowDownRight className="h-4 w-4" />}>
               Explore Projects
@@ -107,9 +109,7 @@ export function HeroSection() {
           <motion.a
             className="inline-flex items-center gap-2 text-sm text-white/62 transition hover:text-cyan-100"
             href={`mailto:${siteContent.email}`}
-            initial={{ opacity: 0, y: 18 }}
-            transition={{ duration: 0.8, delay: 0.26 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...fadeUp(0.3, 18)}
           >
             <Mail className="h-4 w-4" />
             {siteContent.email}
@@ -117,9 +117,7 @@ export function HeroSection() {
 
           <motion.div
             className="grid gap-3 sm:grid-cols-3"
-            initial={{ opacity: 0, y: 24 }}
-            transition={{ duration: 0.85, delay: 0.3 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...fadeUp(0.34)}
           >
             {siteContent.heroStats.map((stat) => (
               <div className="surface rounded-[1.5rem] px-4 py-5" key={stat.label}>
@@ -132,9 +130,7 @@ export function HeroSection() {
 
         <motion.div
           className="surface-strong relative overflow-hidden rounded-[2.2rem]"
-          initial={{ opacity: 0, scale: 0.98, y: 16 }}
-          transition={{ duration: 0.9, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          {...fadeScale}
         >
           <div className="noise-mask absolute inset-0 opacity-80" />
 
@@ -143,10 +139,13 @@ export function HeroSection() {
               <img
                 alt={siteContent.name}
                 className="h-full w-full object-cover object-top"
+                decoding="async"
+                fetchPriority="high"
+                loading="eager"
                 src={siteContent.photoSrc}
               />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,7,11,0.04),rgba(5,7,11,0.82))]" />
-              <div className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-white/12 bg-black/28 px-3 py-2 text-[11px] uppercase tracking-[0.35em] text-white/68 backdrop-blur-md">
+              <div className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-white/12 bg-black/48 px-3 py-2 text-[11px] uppercase tracking-[0.35em] text-white/68">
                 <MapPin className="h-3.5 w-3.5 text-cyan-100" />
                 {siteContent.location}
               </div>

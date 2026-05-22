@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
 import Lenis from 'lenis';
 
-import { ScrollTrigger } from '@/lib/motion';
-
 export function useLenis(enabled: boolean) {
   useEffect(() => {
     if (!enabled) {
@@ -10,10 +8,10 @@ export function useLenis(enabled: boolean) {
     }
 
     const lenis = new Lenis({
-      duration: 1.15,
+      duration: 0.92,
       smoothWheel: true,
       syncTouch: false,
-      touchMultiplier: 1.1,
+      wheelMultiplier: 0.95,
     });
 
     let frameId = 0;
@@ -22,7 +20,6 @@ export function useLenis(enabled: boolean) {
       frameId = window.requestAnimationFrame(raf);
     };
 
-    lenis.on('scroll', ScrollTrigger.update);
     frameId = window.requestAnimationFrame(raf);
 
     return () => {

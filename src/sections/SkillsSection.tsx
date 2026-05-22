@@ -5,8 +5,11 @@ import { SectionShell } from '@/components/layout/SectionShell';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { skillGroups } from '@/data/portfolio';
+import { useDeviceProfile } from '@/hooks/use-device-profile';
 
 export function SkillsSection() {
+  const { allowViewportMotion } = useDeviceProfile();
+
   return (
     <SectionShell id="skills">
       <Container className="space-y-12">
@@ -35,17 +38,24 @@ export function SkillsSection() {
                       <span className="text-white/38">{skill.level}%</span>
                     </div>
                     <div className="h-1.5 overflow-hidden rounded-full bg-white/8">
-                      <motion.div
-                        className="h-full rounded-full bg-gradient-to-r from-cyan-100 via-white/90 to-cyan-200"
-                        initial={{ width: 0 }}
-                        transition={{
-                          delay: groupIndex * 0.08 + skillIndex * 0.05,
-                          duration: 0.8,
-                          ease: [0.22, 1, 0.36, 1],
-                        }}
-                        viewport={{ once: true }}
-                        whileInView={{ width: `${skill.level}%` }}
-                      />
+                      {allowViewportMotion ? (
+                        <motion.div
+                          className="h-full rounded-full bg-gradient-to-r from-cyan-100 via-white/90 to-cyan-200"
+                          initial={{ width: 0 }}
+                          transition={{
+                            delay: groupIndex * 0.08 + skillIndex * 0.05,
+                            duration: 0.8,
+                            ease: [0.22, 1, 0.36, 1],
+                          }}
+                          viewport={{ once: true }}
+                          whileInView={{ width: `${skill.level}%` }}
+                        />
+                      ) : (
+                        <div
+                          className="h-full rounded-full bg-gradient-to-r from-cyan-100 via-white/90 to-cyan-200"
+                          style={{ width: `${skill.level}%` }}
+                        />
+                      )}
                     </div>
                   </div>
                 ))}

@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 
+import { useDeviceProfile } from '@/hooks/use-device-profile';
 import { cn } from '@/lib/cn';
 
 interface RevealProps {
@@ -10,6 +11,12 @@ interface RevealProps {
 }
 
 export function Reveal({ children, className, delay = 0 }: RevealProps) {
+  const { allowViewportMotion } = useDeviceProfile();
+
+  if (!allowViewportMotion) {
+    return <div className={cn(className)}>{children}</div>;
+  }
+
   return (
     <motion.div
       className={cn(className)}

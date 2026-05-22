@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 
+import { useDeviceProfile } from '@/hooks/use-device-profile';
+
 interface SectionHeadingProps {
   eyebrow: string;
   title: string;
@@ -11,6 +13,24 @@ export function SectionHeading({
   title,
   description,
 }: SectionHeadingProps) {
+  const { allowViewportMotion } = useDeviceProfile();
+
+  if (!allowViewportMotion) {
+    return (
+      <div className="max-w-3xl space-y-4">
+        <p className="text-xs uppercase tracking-[0.45em] text-cyan-100/70">
+          {eyebrow}
+        </p>
+        <h2 className="heading-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          {title}
+        </h2>
+        <p className="max-w-2xl text-base leading-7 text-white/62 sm:text-lg">
+          {description}
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-3xl space-y-4">
       <motion.p
