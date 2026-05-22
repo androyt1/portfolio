@@ -4,8 +4,10 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 
+const isGitHubPagesBuild = process.env.GITHUB_ACTIONS === 'true';
+
 export default defineConfig({
-  base: '/portfolio/',
+  base: isGitHubPagesBuild ? '/portfolio/' : '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

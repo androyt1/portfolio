@@ -68,6 +68,10 @@ textarea {
   font: inherit;
 }
 
+button {
+  color: inherit;
+}
+
 img,
 svg,
 canvas,
@@ -154,6 +158,13 @@ html[data-effects='reduced'] .noise-mask {
 
   .surface-strong {
     box-shadow: 0 20px 56px rgba(0, 0, 0, 0.22);
+  }
+}
+
+@media (max-width: 640px) {
+  html,
+  body {
+    overflow-x: clip;
   }
 }
 

@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
+import { ResumeChatWidget } from '@/components/chat/ResumeChatWidget';
 import { SiteFooter } from '@/components/footer/SiteFooter';
 import { ScrollProgress } from '@/components/navigation/ScrollProgress';
 import { SiteHeader } from '@/components/navigation/SiteHeader';
@@ -106,6 +107,7 @@ export function App() {
         </main>
 
         <SiteFooter />
+        <ResumeChatWidget />
       </>
     </DeviceProfileProvider>
   );
