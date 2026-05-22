@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 
 import { useDeviceProfile } from '@/hooks/use-device-profile';
+import { TextReveal } from '@/components/ui/TextReveal';
 
 interface SectionHeadingProps {
   eyebrow: string;
@@ -45,20 +46,36 @@ export function SectionHeading({
       <motion.h2
         className="heading-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl"
         initial={{ opacity: 0, y: 22 }}
-        transition={{ duration: 0.8, delay: 0.08 }}
+        transition={{ duration: 0.8, delay: 0.06 }}
         viewport={{ once: true }}
         whileInView={{ opacity: 1, y: 0 }}
       >
-        {title}
+        <TextReveal
+          amount={0.6}
+          delay={0.04}
+          disabled={!allowViewportMotion}
+          hiddenColor="rgba(5, 7, 11, 0.98)"
+          revealColor="rgba(246, 247, 251, 1)"
+          stagger={0.02}
+          text={title}
+        />
       </motion.h2>
       <motion.p
         className="max-w-2xl text-base leading-7 text-white/62 sm:text-lg"
         initial={{ opacity: 0, y: 18 }}
-        transition={{ duration: 0.8, delay: 0.14 }}
+        transition={{ duration: 0.8, delay: 0.12 }}
         viewport={{ once: true }}
         whileInView={{ opacity: 1, y: 0 }}
       >
-        {description}
+        <TextReveal
+          amount={0.7}
+          delay={0.12}
+          disabled={!allowViewportMotion}
+          hiddenColor="rgba(5, 7, 11, 0.98)"
+          revealColor="rgba(246, 247, 251, 0.62)"
+          stagger={0.012}
+          text={description}
+        />
       </motion.p>
     </div>
   );
