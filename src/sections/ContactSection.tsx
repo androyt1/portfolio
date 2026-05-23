@@ -39,7 +39,8 @@ export function ContactSection() {
     <SectionShell className="pb-24 sm:pb-28 lg:pb-32" id="contact">
       <Container className="space-y-12">
         <SectionHeading
-          description="The close is intentionally direct: clear contact paths, immediate resume access, and enough signal that a recruiter can place the fit quickly."
+          description={`Based in Carshalton, UK. Open to hybrid and remote roles.
+I typically respond within 24 hours.`}
           eyebrow="Contact"
           title="If the role needs strong frontend craft, AI product fluency, and dependable delivery, let’s talk."
         />
