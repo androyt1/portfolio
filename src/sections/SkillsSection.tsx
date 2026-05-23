@@ -16,7 +16,8 @@ export function SkillsSection() {
         <SectionHeading
           description="The stack matters, but what recruiters usually infer is whether the engineer can shape a system, sweat the details, and still make delivery feel calm."
           eyebrow="Technical Skills"
-          title="Modern frontend depth with enough backend range to carry product work end to end."
+          title={`Modern frontend depth with production AI range
+to carry end-to-end AI product work.`}
         />
 
         <div className="grid gap-5 lg:grid-cols-3">
