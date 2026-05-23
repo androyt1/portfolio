@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowDownRight, Download, Mail, MapPin, Sparkles } from "lucide-react";
+import { lazy, Suspense } from "react";
 
 import { Container } from "@/components/layout/Container";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -12,115 +13,11 @@ const focusPoints = [
   "Performance tuning, design systems, and production delivery quality",
 ] as const;
 
-const heroParticles = [
-  {
-    delay: 0,
-    driftX: 28,
-    driftY: -22,
-    duration: 16,
-    left: "7%",
-    opacity: 0.7,
-    size: 7,
-    top: "16%",
-  },
-  {
-    delay: 0.8,
-    driftX: -24,
-    driftY: 20,
-    duration: 18,
-    left: "18%",
-    opacity: 0.58,
-    size: 5,
-    top: "31%",
-  },
-  {
-    delay: 1.1,
-    driftX: 22,
-    driftY: -16,
-    duration: 14,
-    left: "28%",
-    opacity: 0.5,
-    size: 4,
-    top: "12%",
-  },
-  {
-    delay: 0.3,
-    driftX: -32,
-    driftY: 18,
-    duration: 19,
-    left: "42%",
-    opacity: 0.6,
-    size: 6,
-    top: "24%",
-  },
-  {
-    delay: 1.5,
-    driftX: 20,
-    driftY: -14,
-    duration: 15,
-    left: "56%",
-    opacity: 0.52,
-    size: 4,
-    top: "10%",
-  },
-  {
-    delay: 0.4,
-    driftX: -20,
-    driftY: 18,
-    duration: 17,
-    left: "64%",
-    opacity: 0.66,
-    size: 7,
-    top: "28%",
-  },
-  {
-    delay: 0.9,
-    driftX: 24,
-    driftY: -18,
-    duration: 20,
-    left: "76%",
-    opacity: 0.55,
-    size: 5,
-    top: "18%",
-  },
-  {
-    delay: 1.2,
-    driftX: -18,
-    driftY: 22,
-    duration: 16,
-    left: "84%",
-    opacity: 0.48,
-    size: 4,
-    top: "36%",
-  },
-] as const;
+const HeroParticles = lazy(async () => {
+  const module = await import("@/components/hero/HeroParticles");
 
-const heroTrails = [
-  {
-    delay: 0,
-    duration: 20,
-    left: "14%",
-    rotation: -8,
-    top: "20%",
-    width: "12rem",
-  },
-  {
-    delay: 0.7,
-    duration: 24,
-    left: "48%",
-    rotation: 6,
-    top: "12%",
-    width: "10rem",
-  },
-  {
-    delay: 1.2,
-    duration: 18,
-    left: "68%",
-    rotation: -5,
-    top: "30%",
-    width: "9rem",
-  },
-] as const;
+  return { default: module.HeroParticles };
+});
 
 export function HeroSection() {
   const { allowHeroMotion } = useDeviceProfile();
@@ -129,71 +26,6 @@ export function HeroSection() {
     headlineSegments.at(0)?.replace(/\.$/, "") ?? siteContent.headline;
   const headlineSecondary = headlineSegments.slice(1).join(". ").trim();
   const ease = [0.22, 1, 0.36, 1] as const;
-  const particleMotion = (
-    delay: number,
-    duration: number,
-    driftX: number,
-    driftY: number,
-  ) =>
-    allowHeroMotion
-      ? {
-          animate: {
-            opacity: [0.28, 0.88, 0.34],
-            scale: [0.92, 1.12, 0.96],
-            x: [0, driftX, 0],
-            y: [0, driftY, 0],
-          },
-          transition: {
-            delay,
-            duration,
-            ease: "easeInOut" as const,
-            repeat: Number.POSITIVE_INFINITY,
-          },
-        }
-      : {};
-  const ambientFloatA = allowHeroMotion
-    ? {
-        animate: {
-          opacity: [0.32, 0.52, 0.32],
-          scale: [1, 1.1, 1],
-          x: [0, 54, 0],
-          y: [0, -24, 0],
-        },
-        transition: {
-          duration: 15,
-          ease: "easeInOut" as const,
-          repeat: Number.POSITIVE_INFINITY,
-        },
-      }
-    : {};
-  const ambientFloatB = allowHeroMotion
-    ? {
-        animate: {
-          opacity: [0.22, 0.42, 0.22],
-          scale: [1.04, 0.96, 1.04],
-          x: [0, -44, 0],
-          y: [0, 30, 0],
-        },
-        transition: {
-          duration: 18,
-          ease: "easeInOut" as const,
-          repeat: Number.POSITIVE_INFINITY,
-        },
-      }
-    : {};
-  const ambientLine = allowHeroMotion
-    ? {
-        animate: {
-          opacity: [0.2, 0.42, 0.2],
-          x: [-28, 34, -28],
-        },
-        transition: {
-          duration: 12,
-          ease: "easeInOut" as const,
-          repeat: Number.POSITIVE_INFINITY,
-        },
-      }
-    : {};
   const fadeUp = (delay = 0, y = 24) =>
     allowHeroMotion
       ? {
@@ -216,102 +48,16 @@ export function HeroSection() {
       id="top"
     >
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_50%_0%,rgba(130,190,255,0.18),transparent_46%)]" />
-        <motion.div
-          className="absolute left-[-4%] top-24 h-56 w-56 rounded-full bg-cyan-200/18 blur-[110px]"
-          {...ambientFloatA}
-        />
-        <motion.div
-          className="absolute right-[2%] top-[11%] h-80 w-80 rounded-full bg-blue-100/14 blur-[132px]"
-          {...ambientFloatB}
-        />
-        <div className="absolute inset-x-[6%] top-[8%] h-[24rem] overflow-hidden">
-          {heroTrails.map((trail) => (
-            <motion.span
-              animate={
-                allowHeroMotion
-                  ? {
-                      opacity: [0.16, 0.34, 0.16],
-                      x: [-10, 24, -10],
-                    }
-                  : undefined
-              }
-              className="absolute hidden h-px bg-gradient-to-r from-transparent via-cyan-100/38 to-transparent lg:block"
-              key={`${trail.left}-${trail.top}`}
-              style={{
-                left: trail.left,
-                top: trail.top,
-                transform: `rotate(${trail.rotation}deg)`,
-                width: trail.width,
-              }}
-              transition={
-                allowHeroMotion
-                  ? {
-                      delay: trail.delay,
-                      duration: trail.duration,
-                      ease: "easeInOut",
-                      repeat: Number.POSITIVE_INFINITY,
-                    }
-                  : undefined
-              }
-            />
-          ))}
-
-          {heroParticles.map((particle) => (
-            <motion.span
-              className="absolute"
-              key={`${particle.left}-${particle.top}`}
-              style={{
-                left: particle.left,
-                top: particle.top,
-              }}
-              {...particleMotion(
-                particle.delay,
-                particle.duration,
-                particle.driftX,
-                particle.driftY,
-              )}
-            >
-              <span
-                className="absolute -inset-2 rounded-full bg-cyan-100/10 blur-md"
-                style={{ opacity: particle.opacity * 0.9 }}
-              />
-              <span
-                className="absolute rounded-full border border-cyan-100/20 bg-cyan-100/75 shadow-[0_0_18px_rgba(140,216,255,0.4)]"
-                style={{
-                  height: `${particle.size}px`,
-                  opacity: particle.opacity,
-                  width: `${particle.size}px`,
-                }}
-              />
-            </motion.span>
-          ))}
-        </div>
-        <motion.div
-          className="absolute inset-x-[12%] top-[20%] hidden h-px bg-gradient-to-r from-transparent via-white/16 to-transparent lg:block"
-          {...ambientLine}
-        />
-        <motion.div
-          className="absolute left-[8%] top-[14%] hidden h-56 w-56 rounded-full border border-cyan-100/[0.08] lg:block"
-          animate={
-            allowHeroMotion
-              ? {
-                  opacity: [0.12, 0.28, 0.12],
-                  rotate: [0, 12, 0],
-                  scale: [1, 1.03, 1],
-                }
-              : undefined
-          }
-          transition={
-            allowHeroMotion
-              ? {
-                  duration: 24,
-                  ease: "easeInOut",
-                  repeat: Number.POSITIVE_INFINITY,
-                }
-              : undefined
-          }
-        />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(141,216,255,0.18),transparent_34%),linear-gradient(180deg,rgba(7,11,18,0.08),rgba(5,7,11,0.02))]" />
+        <div className="absolute inset-x-[-8%] top-[-2rem] h-[28rem] bg-[radial-gradient(circle_at_50%_0%,rgba(126,183,255,0.2),transparent_48%)]" />
+        <div className="absolute left-[-6%] top-24 h-56 w-56 rounded-full bg-cyan-200/12 blur-[100px]" />
+        <div className="absolute right-[-2%] top-18 h-72 w-72 rounded-full bg-sky-100/10 blur-[120px]" />
+        <div className="absolute inset-x-[10%] top-[14%] h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        {allowHeroMotion ? (
+          <Suspense fallback={null}>
+            <HeroParticles />
+          </Suspense>
+        ) : null}
       </div>
 
       <Container className="grid gap-10 pb-14 lg:grid-cols-[minmax(0,1fr)_minmax(340px,0.7fr)] lg:items-center lg:pb-18 xl:gap-12">

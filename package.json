@@ -29,7 +29,9 @@
     "openai": "^6.39.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
+    "react-tsparticles": "^2.12.2",
     "tailwind-merge": "^3.6.0",
-    "three": "^0.184.0"
+    "three": "^0.184.0",
+    "tsparticles-slim": "^2.12.0"
   }
 }
