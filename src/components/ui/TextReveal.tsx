@@ -21,26 +21,35 @@ function renderAnimatedWords(
   hiddenColor: string,
   revealColor: string,
 ): ReactNode {
-  const words = text.split(' ');
+  const tokens = text.match(/\S+|\s+/g) ?? [];
 
-  return words.map((word, wordIndex) => (
-    <span className="inline-block" key={`${word}-${wordIndex}`}>
-      {Array.from(word).map((character, characterIndex) => (
-        <motion.span
-          className="inline-block"
-          key={`${wordIndex}-${characterIndex}-${character}`}
-          transition={{ duration: 0.48, ease: revealEase }}
-          variants={{
-            hidden: { color: hiddenColor },
-            visible: { color: revealColor },
-          }}
-        >
-          {character}
-        </motion.span>
-      ))}
-      {wordIndex < words.length - 1 ? ' ' : null}
-    </span>
-  ));
+  return tokens.map((token, tokenIndex) => {
+    if (/^\s+$/.test(token)) {
+      return (
+        <span className="whitespace-pre-wrap" key={`space-${tokenIndex}`}>
+          {token}
+        </span>
+      );
+    }
+
+    return (
+      <span className="inline-block" key={`${token}-${tokenIndex}`}>
+        {Array.from(token).map((character, characterIndex) => (
+          <motion.span
+            className="inline-block"
+            key={`${tokenIndex}-${characterIndex}-${character}`}
+            transition={{ duration: 0.48, ease: revealEase }}
+            variants={{
+              hidden: { color: hiddenColor },
+              visible: { color: revealColor },
+            }}
+          >
+            {character}
+          </motion.span>
+        ))}
+      </span>
+    );
+  });
 }
 
 export function TextReveal({
@@ -62,7 +71,7 @@ export function TextReveal({
       <span className="sr-only">{text}</span>
       <motion.span
         aria-hidden="true"
-        className="block"
+        className="block whitespace-pre-wrap"
         initial="hidden"
         transition={{
           delayChildren: delay,
