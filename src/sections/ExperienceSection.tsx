@@ -29,7 +29,10 @@ export function ExperienceSection() {
     <SectionShell id="experience">
       <Container className="space-y-12">
         <SectionHeading
-          description="Instead of splitting this section into an uneven sidebar and timeline, the experience is presented as a denser set of hiring signals and role snapshots."
+          description={`From enterprise banking products at HSBC to AI-native
+tools built with LangChain and LangGraph — every role
+has sharpened both my technical range and my instinct
+for what actually ships.`}
           eyebrow="Professional Experience"
           title="Senior-level work across enterprise delivery, AI product engineering, and high-performance frontend execution."
         />
