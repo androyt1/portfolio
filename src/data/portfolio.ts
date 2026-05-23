@@ -191,6 +191,18 @@ export const projects = [
       'Retrieval grounding, multimodal analysis, and polished learning workflows',
   },
   {
+    title: 'DevLens',
+    outcome: 'AI-powered GitHub repository analysis and documentation generation',
+    description:
+      'Built a tool that analyses any public GitHub repository and returns a codebase summary, tech stack breakdown, code quality report, and a first-pass README draft using agentic AI workflows.',
+    stack: ['React', 'TypeScript', 'Claude API', 'GitHub API', 'LangChain'],
+    liveHref: '#contact',
+    repoHref: '#contact',
+    accent: 'from-violet-200/18 via-sky-200/10 to-transparent',
+    highlight:
+      'Repository intelligence, code quality heuristics, and AI-generated developer documentation',
+  },
+  {
     title: 'Real-Time Collaboration Board',
     outcome: 'Google-Docs-style collaboration for product teams',
     description:

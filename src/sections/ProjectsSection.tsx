@@ -7,6 +7,8 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { projects } from '@/data/portfolio';
 
 export function ProjectsSection() {
+  const hasExpandedGrid = projects.length > 3;
+
   return (
     <SectionShell id="projects">
       <Container className="space-y-12">
@@ -24,7 +26,9 @@ export function ProjectsSection() {
                   ? 'lg:col-span-7'
                   : index === 1
                     ? 'lg:col-span-5'
-                    : 'lg:col-span-12'
+                    : hasExpandedGrid
+                      ? 'lg:col-span-6'
+                      : 'lg:col-span-12'
               }`}
               delay={index * 0.08}
               key={project.title}
