@@ -26,7 +26,9 @@ export function AboutSection() {
     <SectionShell id="about">
       <Container className="space-y-12">
         <SectionHeading
-          description="This section is meant to make the senior-level signal obvious quickly: product judgment, systems thinking, and the kind of execution quality that survives scale."
+          description={`7+ years shipping products means I've learned where
+complexity hides — and how to build systems that hold
+up when real users arrive.`}
           eyebrow="About"
           title="I build AI products that work in production - not just demos. My background in frontend engineering means I can own the full stack: from LLM orchestration and RAG pipelines to the interface the user actually touches."
         />
