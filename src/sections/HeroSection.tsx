@@ -1,61 +1,140 @@
-import { motion } from 'framer-motion';
-import { ArrowDownRight, Download, Mail, MapPin, Sparkles } from 'lucide-react';
+import { motion } from "framer-motion";
+import { ArrowDownRight, Download, Mail, MapPin, Sparkles } from "lucide-react";
 
-import { Container } from '@/components/layout/Container';
-import { MagneticButton } from '@/components/ui/MagneticButton';
-import { siteContent } from '@/data/portfolio';
-import { useDeviceProfile } from '@/hooks/use-device-profile';
-
-const heroStack = [
-  'React',
-  'TypeScript',
-  'Next.js',
-  'OpenAI',
-  'LangChain',
-  'LangGraph',
-  'RAG',
-  'Pinecone',
-  'LangSmith',
-  'Python',
-  'Tailwind',
-  'Storybook',
-  'Supabase',
-  'AWS',
-] as const;
+import { Container } from "@/components/layout/Container";
+import { MagneticButton } from "@/components/ui/MagneticButton";
+import { siteContent } from "@/data/portfolio";
+import { useDeviceProfile } from "@/hooks/use-device-profile";
 
 const focusPoints = [
-  'Enterprise-grade frontend architecture',
-  'AI-native product workflows with retrieval and multimodal inputs',
-  'Performance tuning, design systems, and production delivery quality',
+  "Enterprise-grade frontend architecture",
+  "AI-native product workflows with retrieval and multimodal inputs",
+  "Performance tuning, design systems, and production delivery quality",
 ] as const;
 
 const heroParticles = [
-  { delay: 0, driftX: 28, driftY: -22, duration: 16, left: '7%', opacity: 0.7, size: 7, top: '16%' },
-  { delay: 0.8, driftX: -24, driftY: 20, duration: 18, left: '18%', opacity: 0.58, size: 5, top: '31%' },
-  { delay: 1.1, driftX: 22, driftY: -16, duration: 14, left: '28%', opacity: 0.5, size: 4, top: '12%' },
-  { delay: 0.3, driftX: -32, driftY: 18, duration: 19, left: '42%', opacity: 0.6, size: 6, top: '24%' },
-  { delay: 1.5, driftX: 20, driftY: -14, duration: 15, left: '56%', opacity: 0.52, size: 4, top: '10%' },
-  { delay: 0.4, driftX: -20, driftY: 18, duration: 17, left: '64%', opacity: 0.66, size: 7, top: '28%' },
-  { delay: 0.9, driftX: 24, driftY: -18, duration: 20, left: '76%', opacity: 0.55, size: 5, top: '18%' },
-  { delay: 1.2, driftX: -18, driftY: 22, duration: 16, left: '84%', opacity: 0.48, size: 4, top: '36%' },
+  {
+    delay: 0,
+    driftX: 28,
+    driftY: -22,
+    duration: 16,
+    left: "7%",
+    opacity: 0.7,
+    size: 7,
+    top: "16%",
+  },
+  {
+    delay: 0.8,
+    driftX: -24,
+    driftY: 20,
+    duration: 18,
+    left: "18%",
+    opacity: 0.58,
+    size: 5,
+    top: "31%",
+  },
+  {
+    delay: 1.1,
+    driftX: 22,
+    driftY: -16,
+    duration: 14,
+    left: "28%",
+    opacity: 0.5,
+    size: 4,
+    top: "12%",
+  },
+  {
+    delay: 0.3,
+    driftX: -32,
+    driftY: 18,
+    duration: 19,
+    left: "42%",
+    opacity: 0.6,
+    size: 6,
+    top: "24%",
+  },
+  {
+    delay: 1.5,
+    driftX: 20,
+    driftY: -14,
+    duration: 15,
+    left: "56%",
+    opacity: 0.52,
+    size: 4,
+    top: "10%",
+  },
+  {
+    delay: 0.4,
+    driftX: -20,
+    driftY: 18,
+    duration: 17,
+    left: "64%",
+    opacity: 0.66,
+    size: 7,
+    top: "28%",
+  },
+  {
+    delay: 0.9,
+    driftX: 24,
+    driftY: -18,
+    duration: 20,
+    left: "76%",
+    opacity: 0.55,
+    size: 5,
+    top: "18%",
+  },
+  {
+    delay: 1.2,
+    driftX: -18,
+    driftY: 22,
+    duration: 16,
+    left: "84%",
+    opacity: 0.48,
+    size: 4,
+    top: "36%",
+  },
 ] as const;
 
 const heroTrails = [
-  { delay: 0, duration: 20, left: '14%', rotation: -8, top: '20%', width: '12rem' },
-  { delay: 0.7, duration: 24, left: '48%', rotation: 6, top: '12%', width: '10rem' },
-  { delay: 1.2, duration: 18, left: '68%', rotation: -5, top: '30%', width: '9rem' },
+  {
+    delay: 0,
+    duration: 20,
+    left: "14%",
+    rotation: -8,
+    top: "20%",
+    width: "12rem",
+  },
+  {
+    delay: 0.7,
+    duration: 24,
+    left: "48%",
+    rotation: 6,
+    top: "12%",
+    width: "10rem",
+  },
+  {
+    delay: 1.2,
+    duration: 18,
+    left: "68%",
+    rotation: -5,
+    top: "30%",
+    width: "9rem",
+  },
 ] as const;
 
 export function HeroSection() {
   const { allowHeroMotion } = useDeviceProfile();
-  const headlineSegments = siteContent.headline.split('. ').filter(Boolean);
-  const headlinePrimary = headlineSegments.at(0)?.replace(/\.$/, '') ?? siteContent.headline;
-  const headlineSecondary = headlineSegments
-    .slice(1)
-    .join('. ')
-    .trim();
+  const headlineSegments = siteContent.headline.split(". ").filter(Boolean);
+  const headlinePrimary =
+    headlineSegments.at(0)?.replace(/\.$/, "") ?? siteContent.headline;
+  const headlineSecondary = headlineSegments.slice(1).join(". ").trim();
   const ease = [0.22, 1, 0.36, 1] as const;
-  const particleMotion = (delay: number, duration: number, driftX: number, driftY: number) =>
+  const particleMotion = (
+    delay: number,
+    duration: number,
+    driftX: number,
+    driftY: number,
+  ) =>
     allowHeroMotion
       ? {
           animate: {
@@ -67,7 +146,7 @@ export function HeroSection() {
           transition: {
             delay,
             duration,
-            ease: 'easeInOut' as const,
+            ease: "easeInOut" as const,
             repeat: Number.POSITIVE_INFINITY,
           },
         }
@@ -82,7 +161,7 @@ export function HeroSection() {
         },
         transition: {
           duration: 15,
-          ease: 'easeInOut' as const,
+          ease: "easeInOut" as const,
           repeat: Number.POSITIVE_INFINITY,
         },
       }
@@ -97,7 +176,7 @@ export function HeroSection() {
         },
         transition: {
           duration: 18,
-          ease: 'easeInOut' as const,
+          ease: "easeInOut" as const,
           repeat: Number.POSITIVE_INFINITY,
         },
       }
@@ -110,7 +189,7 @@ export function HeroSection() {
         },
         transition: {
           duration: 12,
-          ease: 'easeInOut' as const,
+          ease: "easeInOut" as const,
           repeat: Number.POSITIVE_INFINITY,
         },
       }
@@ -132,7 +211,10 @@ export function HeroSection() {
     : {};
 
   return (
-    <section className="relative overflow-hidden pt-24 sm:pt-28 lg:pt-32" id="top">
+    <section
+      className="relative overflow-hidden pt-24 sm:pt-28 lg:pt-32"
+      id="top"
+    >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_50%_0%,rgba(130,190,255,0.18),transparent_46%)]" />
         <motion.div
@@ -167,7 +249,7 @@ export function HeroSection() {
                   ? {
                       delay: trail.delay,
                       duration: trail.duration,
-                      ease: 'easeInOut',
+                      ease: "easeInOut",
                       repeat: Number.POSITIVE_INFINITY,
                     }
                   : undefined
@@ -211,12 +293,20 @@ export function HeroSection() {
         />
         <motion.div
           className="absolute left-[8%] top-[14%] hidden h-56 w-56 rounded-full border border-cyan-100/[0.08] lg:block"
-          animate={allowHeroMotion ? { opacity: [0.12, 0.28, 0.12], rotate: [0, 12, 0], scale: [1, 1.03, 1] } : undefined}
+          animate={
+            allowHeroMotion
+              ? {
+                  opacity: [0.12, 0.28, 0.12],
+                  rotate: [0, 12, 0],
+                  scale: [1, 1.03, 1],
+                }
+              : undefined
+          }
           transition={
             allowHeroMotion
               ? {
                   duration: 24,
-                  ease: 'easeInOut',
+                  ease: "easeInOut",
                   repeat: Number.POSITIVE_INFINITY,
                 }
               : undefined
@@ -272,7 +362,10 @@ export function HeroSection() {
             className="flex flex-col gap-3 sm:flex-row"
             {...fadeUp(0.24)}
           >
-            <MagneticButton href="#projects" icon={<ArrowDownRight className="h-4 w-4" />}>
+            <MagneticButton
+              href="#projects"
+              icon={<ArrowDownRight className="h-4 w-4" />}
+            >
               Explore Projects
             </MagneticButton>
             <MagneticButton
@@ -294,13 +387,15 @@ export function HeroSection() {
             {siteContent.email}
           </motion.a>
 
-          <motion.div
-            className="grid gap-3 sm:grid-cols-3"
-            {...fadeUp(0.34)}
-          >
+          <motion.div className="grid gap-3 sm:grid-cols-3" {...fadeUp(0.34)}>
             {siteContent.heroStats.map((stat) => (
-              <div className="surface rounded-[1.5rem] px-4 py-5" key={stat.label}>
-                <p className="text-2xl font-semibold text-white">{stat.value}</p>
+              <div
+                className="surface rounded-[1.5rem] px-4 py-5"
+                key={stat.label}
+              >
+                <p className="text-2xl font-semibold text-white">
+                  {stat.value}
+                </p>
                 <p className="mt-1 text-sm text-white/45">{stat.label}</p>
               </div>
             ))}
@@ -341,8 +436,8 @@ export function HeroSection() {
               </h2>
               <p className="mt-3 max-w-md text-sm leading-7 text-white/70">
                 AI engineer focused on production-ready RAG systems, agentic
-                workflows, and frontend experiences that make complex model behavior
-                feel clear and fast to use.
+                workflows, and frontend experiences that make complex model
+                behavior feel clear and fast to use.
               </p>
               <div className="mt-4 inline-flex items-center rounded-full border border-white/10 bg-white/[0.05] px-3 py-2 text-[11px] uppercase tracking-[0.32em] text-white/52">
                 AI systems + product polish
@@ -350,37 +445,19 @@ export function HeroSection() {
             </div>
           </div>
 
-          <div className="grid gap-4 border-t border-white/8 p-5 sm:p-6">
-            <div className="grid gap-4 xl:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]">
-              <div className="rounded-[1.55rem] border border-white/10 bg-white/[0.045] p-5">
-                <p className="text-xs uppercase tracking-[0.35em] text-white/38">
-                  Current focus
-                </p>
-                <ul className="mt-4 space-y-3 text-sm leading-7 text-white/64">
-                  {focusPoints.map((point) => (
-                    <li className="flex gap-3" key={point}>
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-100/80" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="rounded-[1.55rem] border border-white/10 bg-black/22 p-5">
-                <p className="text-xs uppercase tracking-[0.35em] text-white/38">
-                  Core stack
-                </p>
-                <div className="mt-4 grid grid-cols-2 gap-2">
-                  {heroStack.map((item) => (
-                    <span
-                      className="flex min-h-8 items-center justify-center rounded-[0.35rem] border border-white/14 bg-white/[0.07] px-2 py-1.5 text-center text-[11px] leading-none text-white/78 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] whitespace-nowrap sm:px-2.5 sm:py-1.5 sm:text-xs"
-                      key={item}
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
+          <div className="border-t border-white/8 p-5 sm:p-6">
+            <div className="rounded-[1.55rem] border border-white/10 bg-white/[0.045] p-5">
+              <p className="text-xs uppercase tracking-[0.35em] text-white/38">
+                Current focus
+              </p>
+              <ul className="mt-4 space-y-3 text-sm leading-7 text-white/64">
+                {focusPoints.map((point) => (
+                  <li className="flex gap-3" key={point}>
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-100/80" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </motion.div>

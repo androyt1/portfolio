@@ -66,6 +66,79 @@ export const aboutHighlights = [
   },
 ] as const;
 
+export const coreStack = [
+  {
+    eyebrow: 'UI Systems',
+    label: 'React',
+    summary: 'Component architecture for complex, high-velocity product surfaces.',
+  },
+  {
+    eyebrow: 'Typed Frontend',
+    label: 'TypeScript',
+    summary: 'Safer application structure, contracts, and long-term maintainability.',
+  },
+  {
+    eyebrow: 'App Router',
+    label: 'Next.js',
+    summary: 'Hybrid rendering, server boundaries, and product-grade delivery patterns.',
+  },
+  {
+    eyebrow: 'Model APIs',
+    label: 'OpenAI',
+    summary: 'LLM features, assistants, and product UX shaped around real model behavior.',
+  },
+  {
+    eyebrow: 'Orchestration',
+    label: 'LangChain',
+    summary: 'Retrieval pipelines, tool wiring, and composable AI workflows.',
+  },
+  {
+    eyebrow: 'Agents',
+    label: 'LangGraph',
+    summary: 'Stateful agent flows built for multi-step reasoning and action.',
+  },
+  {
+    eyebrow: 'Retrieval',
+    label: 'RAG',
+    summary: 'Grounded answer systems designed for production trust and context quality.',
+  },
+  {
+    eyebrow: 'Vector Search',
+    label: 'Pinecone',
+    summary: 'Fast semantic retrieval and memory layers for AI-native product features.',
+  },
+  {
+    eyebrow: 'Tracing',
+    label: 'LangSmith',
+    summary: 'Evaluation, debugging, and observability for LLM workflows in production.',
+  },
+  {
+    eyebrow: 'Runtime',
+    label: 'Python',
+    summary: 'Backend automation, orchestration services, and AI-focused service layers.',
+  },
+  {
+    eyebrow: 'Styling',
+    label: 'Tailwind',
+    summary: 'Fast visual systems with consistent spacing, polish, and control.',
+  },
+  {
+    eyebrow: 'Components',
+    label: 'Storybook',
+    summary: 'Shared UI primitives, documentation, and interface testing discipline.',
+  },
+  {
+    eyebrow: 'Data Layer',
+    label: 'Supabase',
+    summary: 'Realtime data, auth, and operational speed for product teams.',
+  },
+  {
+    eyebrow: 'Infrastructure',
+    label: 'AWS',
+    summary: 'Deployment, scaling, and cloud primitives behind reliable product delivery.',
+  },
+] as const;
+
 export const skillGroups = [
   {
     title: 'Frontend Systems',

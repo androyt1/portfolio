@@ -13,6 +13,7 @@ import {
 import { useLenis } from '@/hooks/use-lenis';
 import { AboutSection } from '@/sections/AboutSection';
 import { ContactSection } from '@/sections/ContactSection';
+import { CoreStackSection } from '@/sections/CoreStackSection';
 import { ExperienceSection } from '@/sections/ExperienceSection';
 import { HeroSection } from '@/sections/HeroSection';
 import { ProjectsSection } from '@/sections/ProjectsSection';
@@ -98,6 +99,7 @@ export function App() {
 
         <main className="relative">
           <HeroSection />
+          <CoreStackSection />
           <AboutSection />
           <SkillsSection />
           <ProjectsSection />
