@@ -157,6 +157,8 @@ export const skillGroups = [
       'Shipping AI-enhanced features with real product constraints in mind.',
     skills: [
       { label: 'OpenAI API + Gemini Vision', level: 91 },
+      { label: 'LangChain orchestration', level: 89 },
+      { label: 'LangGraph agent workflows', level: 87 },
       { label: 'RAG systems + retrieval orchestration', level: 89 },
       { label: 'Vector databases: Pinecone / Weaviate', level: 86 },
       { label: 'Prompt and workflow UX design', level: 87 },
