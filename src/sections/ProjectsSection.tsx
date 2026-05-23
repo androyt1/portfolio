@@ -7,7 +7,20 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { projects } from '@/data/portfolio';
 
 export function ProjectsSection() {
-  const hasExpandedGrid = projects.length > 3;
+  const getProjectSpan = (index: number) => {
+    if (index === 0) return 'lg:col-span-7';
+    if (index === 1) return 'lg:col-span-5';
+
+    const trailingCount = projects.length - 2;
+    if (trailingCount <= 1) return 'lg:col-span-12';
+
+    const trailingIndex = index - 2;
+    const isLastTrailingCard = trailingIndex === trailingCount - 1;
+
+    return trailingCount % 2 === 1 && isLastTrailingCard
+      ? 'lg:col-span-12'
+      : 'lg:col-span-6';
+  };
 
   return (
     <SectionShell id="projects">
@@ -21,15 +34,7 @@ export function ProjectsSection() {
         <div className="grid gap-5 lg:grid-cols-12">
           {projects.map((project, index) => (
             <Reveal
-              className={`surface group overflow-hidden rounded-[2rem] p-6 sm:p-7 ${
-                index === 0
-                  ? 'lg:col-span-7'
-                  : index === 1
-                    ? 'lg:col-span-5'
-                    : hasExpandedGrid
-                      ? 'lg:col-span-6'
-                      : 'lg:col-span-12'
-              }`}
+              className={`surface group overflow-hidden rounded-[2rem] p-6 sm:p-7 ${getProjectSpan(index)}`}
               delay={index * 0.08}
               key={project.title}
             >

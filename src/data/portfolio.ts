@@ -203,6 +203,18 @@ export const projects = [
       'Repository intelligence, code quality heuristics, and AI-generated developer documentation',
   },
   {
+    title: 'RAG CV Assistant',
+    outcome: 'Context-aware agent that answers recruiter questions directly from resume data',
+    description:
+      'Built a production RAG pipeline that ingests my resume into a Pinecone vector store, retrieves semantically relevant chunks on demand, and answers natural-language questions using LangChain and GPT-4o-mini, with LangSmith tracing for full observability.',
+    stack: ['Python', 'FastAPI', 'LangChain', 'LangGraph', 'Pinecone', 'OpenAI', 'LangSmith', 'RAG'],
+    liveHref: '#contact',
+    repoHref: '#contact',
+    accent: 'from-amber-200/18 via-cyan-200/10 to-transparent',
+    highlight:
+      'Grounded recruiter Q&A, vector retrieval, and end-to-end tracing without hallucinated answers',
+  },
+  {
     title: 'Real-Time Collaboration Board',
     outcome: 'Google-Docs-style collaboration for product teams',
     description:
