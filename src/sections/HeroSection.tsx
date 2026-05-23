@@ -373,7 +373,7 @@ export function HeroSection() {
                 <div className="mt-4 grid grid-cols-2 gap-2">
                   {heroStack.map((item) => (
                     <span
-                      className="flex min-h-9 items-center justify-center rounded-[0.95rem] border border-white/14 bg-white/[0.07] px-2.5 py-2 text-center text-[11px] leading-none text-white/78 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] whitespace-nowrap sm:text-xs"
+                      className="flex min-h-8 items-center justify-center rounded-[0.35rem] border border-white/14 bg-white/[0.07] px-2 py-1.5 text-center text-[11px] leading-none text-white/78 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] whitespace-nowrap sm:px-2.5 sm:py-1.5 sm:text-xs"
                       key={item}
                     >
                       {item}
