@@ -13,7 +13,9 @@ export function ServicesSection() {
     <SectionShell id="services">
       <Container className="space-y-12">
         <SectionHeading
-          description="A concise articulation of value for founders, recruiters, and hiring managers scanning for scope fit."
+          description={`Whether you need AI features shipped into an existing
+product or a new system built from scratch — I can own
+it from architecture to interface.`}
           eyebrow="What I Offer"
           title="The sort of work I tend to own when the quality bar needs to be visibly high."
         />
