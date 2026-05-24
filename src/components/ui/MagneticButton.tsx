@@ -23,8 +23,8 @@ export function MagneticButton({
       className={cn(
         'inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-colors duration-300',
         variant === 'primary'
-          ? 'bg-white text-slate-950 hover:bg-cyan-100'
-          : 'border border-white/12 bg-white/5 text-white hover:bg-white/10',
+          ? 'border border-[#0d9488]/22 bg-white text-slate-950 shadow-[0_12px_32px_rgba(13,148,136,0.14)] hover:border-[#0d9488]/34 hover:bg-[#ccfbf1]'
+          : 'border border-[#0d9488]/24 bg-[#0d9488]/10 text-teal-100 hover:border-[#0d9488]/36 hover:bg-[#0d9488]/16',
         className,
       )}
       onPointerLeave={onPointerLeave}

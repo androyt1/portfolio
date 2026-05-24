@@ -49,13 +49,13 @@ export function ProjectsSection() {
                         {project.title}
                       </h3>
                     </div>
-                    <div className="rounded-full border border-white/10 px-3 py-2 text-xs uppercase tracking-[0.35em] text-cyan-100/70">
+                    <div className="rounded-full border border-[#0d9488]/26 bg-[#0d9488]/10 px-3 py-2 text-xs uppercase tracking-[0.35em] text-teal-100/88">
                       Case study
                     </div>
                   </div>
 
                   <div
-                    className={`relative overflow-hidden rounded-[1.6rem] border border-white/10 bg-gradient-to-br ${project.accent} p-5`}
+                    className={`relative overflow-hidden rounded-[1.6rem] border border-[#0d9488]/18 bg-gradient-to-br ${project.accent} p-5`}
                   >
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_52%)]" />
                     <div className="relative flex min-h-44 flex-col justify-between">
@@ -65,7 +65,7 @@ export function ProjectsSection() {
                         <span className="h-2.5 w-2.5 rounded-full bg-white/18" />
                       </div>
                       <div className="grid gap-3 sm:grid-cols-2">
-                        <div className="rounded-2xl border border-white/12 bg-black/18 p-4">
+                        <div className="rounded-2xl border border-[#0d9488]/18 bg-black/18 p-4">
                           <p className="text-xs uppercase tracking-[0.35em] text-white/36">
                             Focus
                           </p>
@@ -73,7 +73,7 @@ export function ProjectsSection() {
                             {project.highlight}
                           </p>
                         </div>
-                        <div className="rounded-2xl border border-white/12 bg-black/18 p-4">
+                        <div className="rounded-2xl border border-[#0d9488]/18 bg-black/18 p-4">
                           <p className="text-xs uppercase tracking-[0.35em] text-white/36">
                             Result
                           </p>
@@ -92,7 +92,7 @@ export function ProjectsSection() {
                   <div className="flex flex-wrap gap-2">
                     {project.stack.map((item) => (
                       <span
-                        className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/66"
+                        className="rounded-full border border-[#0d9488]/18 bg-[#0d9488]/8 px-3 py-2 text-sm text-white/72"
                         key={item}
                       >
                         {item}
@@ -103,7 +103,7 @@ export function ProjectsSection() {
 
                 <div className="flex flex-wrap gap-3">
                   <a
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-100"
+                    className="inline-flex items-center gap-2 rounded-full border border-[#0d9488]/24 bg-white px-4 py-3 text-sm font-semibold text-slate-950 transition hover:border-[#0d9488]/38 hover:bg-[#ccfbf1]"
                     href={project.liveHref}
                     rel={project.liveHref.startsWith('http') ? 'noreferrer' : undefined}
                     target={project.liveHref.startsWith('http') ? '_blank' : undefined}
@@ -112,7 +112,7 @@ export function ProjectsSection() {
                     <ArrowUpRight className="h-4 w-4" />
                   </a>
                   <a
-                    className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                    className="inline-flex items-center gap-2 rounded-full border border-[#0d9488]/24 bg-[#0d9488]/8 px-4 py-3 text-sm font-semibold text-teal-100 transition hover:bg-[#0d9488]/14"
                     href={project.repoHref}
                     rel={project.repoHref.startsWith('http') ? 'noreferrer' : undefined}
                     target={project.repoHref.startsWith('http') ? '_blank' : undefined}
