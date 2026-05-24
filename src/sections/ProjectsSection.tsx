@@ -2,11 +2,21 @@ import { ArrowUpRight, Github } from 'lucide-react';
 
 import { Container } from '@/components/layout/Container';
 import { SectionShell } from '@/components/layout/SectionShell';
+import { useTheme } from '@/components/theme/ThemeProvider';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { projects } from '@/data/portfolio';
 
 export function ProjectsSection() {
+  const { resolvedTheme } = useTheme();
+  const liveButtonClass =
+    resolvedTheme === 'light'
+      ? 'inline-flex items-center gap-2 rounded-full border border-[#0d9488]/28 bg-[#fbfffe] px-4 py-3 text-sm font-semibold text-slate-950 shadow-[0_12px_28px_rgba(13,148,136,0.1)] transition hover:border-[#0d9488]/42 hover:bg-[#dffaf4]'
+      : 'inline-flex items-center gap-2 rounded-full border border-[#0d9488]/24 bg-white px-4 py-3 text-sm font-semibold text-slate-950 transition hover:border-[#0d9488]/38 hover:bg-[#ccfbf1]';
+  const repoButtonClass =
+    resolvedTheme === 'light'
+      ? 'inline-flex items-center gap-2 rounded-full border border-[#0d9488]/28 bg-[#0d9488]/12 px-4 py-3 text-sm font-semibold text-[#0f766e] shadow-[0_10px_22px_rgba(13,148,136,0.08)] transition hover:border-[#0d9488]/40 hover:bg-[#0d9488]/18'
+      : 'inline-flex items-center gap-2 rounded-full border border-[#0d9488]/24 bg-[#0d9488]/8 px-4 py-3 text-sm font-semibold text-teal-100 transition hover:bg-[#0d9488]/14';
   const getProjectSpan = (index: number) => {
     if (index === 0) return 'lg:col-span-7';
     if (index === 1) return 'lg:col-span-5';
@@ -103,7 +113,7 @@ export function ProjectsSection() {
 
                 <div className="flex flex-wrap gap-3">
                   <a
-                    className="inline-flex items-center gap-2 rounded-full border border-[#0d9488]/24 bg-white px-4 py-3 text-sm font-semibold text-slate-950 transition hover:border-[#0d9488]/38 hover:bg-[#ccfbf1]"
+                    className={liveButtonClass}
                     href={project.liveHref}
                     rel={project.liveHref.startsWith('http') ? 'noreferrer' : undefined}
                     target={project.liveHref.startsWith('http') ? '_blank' : undefined}
@@ -112,7 +122,7 @@ export function ProjectsSection() {
                     <ArrowUpRight className="h-4 w-4" />
                   </a>
                   <a
-                    className="inline-flex items-center gap-2 rounded-full border border-[#0d9488]/24 bg-[#0d9488]/8 px-4 py-3 text-sm font-semibold text-teal-100 transition hover:bg-[#0d9488]/14"
+                    className={repoButtonClass}
                     href={project.repoHref}
                     rel={project.repoHref.startsWith('http') ? 'noreferrer' : undefined}
                     target={project.repoHref.startsWith('http') ? '_blank' : undefined}

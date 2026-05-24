@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 
 import { Container } from '@/components/layout/Container';
 import { SectionShell } from '@/components/layout/SectionShell';
+import { useTheme } from '@/components/theme/ThemeProvider';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { skillGroups } from '@/data/portfolio';
@@ -9,6 +10,13 @@ import { useDeviceProfile } from '@/hooks/use-device-profile';
 
 export function SkillsSection() {
   const { allowViewportMotion } = useDeviceProfile();
+  const { resolvedTheme } = useTheme();
+  const skillTrackClass =
+    resolvedTheme === 'light' ? 'bg-slate-900/8' : 'bg-white/8';
+  const skillFillClass =
+    resolvedTheme === 'light'
+      ? 'bg-gradient-to-r from-[#0d9488] via-[#14b8a6] to-[#0ea5e9] shadow-[0_0_0_1px_rgba(13,148,136,0.08)]'
+      : 'bg-gradient-to-r from-cyan-100 via-white/90 to-cyan-200';
 
   return (
     <SectionShell id="skills">
@@ -38,10 +46,10 @@ to carry end-to-end AI product work.`}
                       <span className="text-white/72">{skill.label}</span>
                       <span className="text-white/38">{skill.level}%</span>
                     </div>
-                    <div className="h-1.5 overflow-hidden rounded-full bg-white/8">
+                    <div className={`h-1.5 overflow-hidden rounded-full ${skillTrackClass}`}>
                       {allowViewportMotion ? (
                         <motion.div
-                          className="h-full rounded-full bg-gradient-to-r from-cyan-100 via-white/90 to-cyan-200"
+                          className={`h-full rounded-full ${skillFillClass}`}
                           initial={{ width: 0 }}
                           transition={{
                             delay: groupIndex * 0.08 + skillIndex * 0.05,
@@ -53,7 +61,7 @@ to carry end-to-end AI product work.`}
                         />
                       ) : (
                         <div
-                          className="h-full rounded-full bg-gradient-to-r from-cyan-100 via-white/90 to-cyan-200"
+                          className={`h-full rounded-full ${skillFillClass}`}
                           style={{ width: `${skill.level}%` }}
                         />
                       )}
