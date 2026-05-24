@@ -184,7 +184,7 @@ export function ResumeChatWidget() {
             <div className="border-b border-white/10 px-4 py-4 sm:px-5">
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-cyan-100/15 bg-cyan-100/6 px-3 py-1 text-[11px] uppercase tracking-[0.28em] text-cyan-100/78">
+                  <div className="border-secondary-soft bg-secondary-soft text-secondary-muted inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.28em]">
                     <Sparkles className="h-3.5 w-3.5" />
                     Resume AI Brief
                   </div>
@@ -207,7 +207,7 @@ export function ResumeChatWidget() {
               </div>
 
               <div className="mt-4 flex items-center gap-2 text-xs text-white/64">
-                <FileText className="h-3.5 w-3.5 text-cyan-100/84" />
+                <FileText className="text-secondary-soft h-3.5 w-3.5" />
                 <span>Source locked to resume.pdf</span>
               </div>
             </div>
@@ -220,7 +220,7 @@ export function ResumeChatWidget() {
                 <div className="grid gap-2">
                   {resumeChatPromptSuggestions.map((prompt) => (
                     <button
-                      className="rounded-[1.2rem] border border-white/12 bg-white/[0.07] px-4 py-3 text-left text-sm leading-6 text-white/88 transition hover:border-cyan-100/18 hover:bg-white/[0.11] hover:text-white"
+                      className="rounded-[1.2rem] border border-white/12 bg-white/[0.07] px-4 py-3 text-left text-sm leading-6 text-white/88 transition hover:border-[#0d9488]/28 hover:bg-white/[0.11] hover:text-white"
                       key={prompt}
                       onClick={() => void submitMessage(prompt)}
                       type="button"
@@ -252,7 +252,7 @@ export function ResumeChatWidget() {
                         <div className="mt-3 flex flex-wrap gap-2">
                           {message.citations.map((citation) => (
                             <span
-                              className="rounded-full border border-cyan-100/18 bg-black/28 px-2.5 py-1 text-[11px] uppercase tracking-[0.18em] text-cyan-100/84"
+                              className="rounded-full border border-[#0d9488]/28 bg-[#0d9488]/12 px-2.5 py-1 text-[11px] uppercase tracking-[0.18em] text-teal-100"
                               key={`${message.id}-${citation.id}`}
                             >
                               {citation.title}
@@ -268,7 +268,7 @@ export function ResumeChatWidget() {
               {isPending ? (
                 <div className="flex justify-start">
                   <div className="inline-flex items-center gap-2 rounded-[1.4rem] border border-white/12 bg-white/[0.07] px-4 py-3 text-sm text-white/80">
-                    <LoaderCircle className="h-4 w-4 animate-spin text-cyan-100" />
+                    <LoaderCircle className="h-4 w-4 animate-spin text-teal-200" />
                     Thinking through the resume…
                   </div>
                 </div>
@@ -298,7 +298,7 @@ export function ResumeChatWidget() {
 
                 <div className="flex items-center justify-between gap-3">
                   <a
-                    className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.24em] text-white/60 transition hover:text-cyan-100"
+                    className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.24em] text-white/60 transition hover:text-teal-200"
                     href={`mailto:${siteContent.email}`}
                   >
                     <Mail className="h-3.5 w-3.5" />
@@ -306,7 +306,7 @@ export function ResumeChatWidget() {
                   </a>
 
                   <button
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-cyan-100/70 bg-cyan-100 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white disabled:cursor-not-allowed disabled:border-white/10 disabled:bg-white/14 disabled:text-white/52"
+                    className="border-secondary-soft inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[var(--secondary)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#0f766e] disabled:cursor-not-allowed disabled:border-white/10 disabled:bg-white/14 disabled:text-white/52"
                     disabled={!draft.trim() || isPending}
                     type="submit"
                   >
@@ -323,7 +323,7 @@ export function ResumeChatWidget() {
       <motion.button
         animate={{ opacity: 1, y: 0 }}
         aria-label="Open resume chat"
-        className="pointer-events-auto mt-3 inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/14 bg-[#0b121c]/94 text-white shadow-[0_18px_48px_rgba(0,0,0,0.28)] transition-colors hover:border-cyan-100/22 hover:bg-[#101925]"
+        className="pointer-events-auto mt-3 inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/14 bg-[#0b121c]/94 text-white shadow-[0_18px_48px_rgba(0,0,0,0.28)] transition-colors hover:border-[#0d9488]/28 hover:bg-[#101925]"
         initial={{ opacity: 0, y: 14 }}
         onClick={() => setIsOpen(true)}
         transition={
@@ -333,7 +333,7 @@ export function ResumeChatWidget() {
         }
         type="button"
       >
-        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-100 text-slate-950 shadow-[0_10px_24px_rgba(140,216,255,0.2)]">
+        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--secondary)] text-white shadow-[0_10px_24px_rgba(13,148,136,0.22)]">
           <MessageSquareText className="h-4.5 w-4.5" />
         </span>
       </motion.button>

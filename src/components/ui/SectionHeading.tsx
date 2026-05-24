@@ -19,7 +19,7 @@ export function SectionHeading({
   if (!allowViewportMotion) {
     return (
       <div className="max-w-3xl space-y-4">
-        <p className="text-xs uppercase tracking-[0.45em] text-cyan-100/70">
+        <p className="text-secondary-muted text-xs uppercase tracking-[0.45em]">
           {eyebrow}
         </p>
         <h2 className="heading-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
@@ -35,7 +35,7 @@ export function SectionHeading({
   return (
     <div className="max-w-3xl space-y-4">
       <motion.p
-        className="text-xs uppercase tracking-[0.45em] text-cyan-100/70"
+        className="text-secondary-muted text-xs uppercase tracking-[0.45em]"
         initial={{ opacity: 0, y: 18 }}
         transition={{ duration: 0.65 }}
         viewport={{ once: true }}

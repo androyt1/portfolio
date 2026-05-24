@@ -198,7 +198,7 @@ export const projects = [
     stack: ['React', 'TypeScript', 'Claude API', 'GitHub API', 'LangChain'],
     liveHref: '#contact',
     repoHref: '#contact',
-    accent: 'from-violet-200/18 via-sky-200/10 to-transparent',
+    accent: 'from-[#0d9488]/24 via-sky-200/10 to-transparent',
     highlight:
       'Repository intelligence, code quality heuristics, and AI-generated developer documentation',
   },
@@ -210,7 +210,7 @@ export const projects = [
     stack: ['Python', 'FastAPI', 'LangChain', 'LangGraph', 'Pinecone', 'OpenAI', 'LangSmith', 'RAG'],
     liveHref: '#contact',
     repoHref: '#contact',
-    accent: 'from-amber-200/18 via-cyan-200/10 to-transparent',
+    accent: 'from-[#0d9488]/20 via-cyan-200/12 to-transparent',
     highlight:
       'Grounded recruiter Q&A, vector retrieval, and end-to-end tracing without hallucinated answers',
   },

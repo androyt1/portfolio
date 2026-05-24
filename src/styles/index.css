@@ -18,6 +18,8 @@
   --muted: #9ca8bb;
   --accent: #8cd8ff;
   --accent-strong: #d8f2ff;
+  --secondary: #0d9488;
+  --secondary-rgb: 13 148 136;
 }
 
 * {
@@ -34,6 +36,7 @@ body {
   overflow-x: hidden;
   background:
     radial-gradient(circle at 15% 18%, rgba(88, 160, 255, 0.12), transparent 26%),
+    radial-gradient(circle at 74% 12%, rgba(13, 148, 136, 0.14), transparent 28%),
     radial-gradient(circle at 78% 0%, rgba(255, 255, 255, 0.08), transparent 24%),
     linear-gradient(180deg, #09101a 0%, #06080d 28%, #05070b 100%);
   color: var(--text);
@@ -76,7 +79,8 @@ iframe {
 }
 
 ::selection {
-  background: rgba(140, 216, 255, 0.28);
+  background: rgba(13, 148, 136, 0.34);
+  color: var(--text);
 }
 
 #root {
@@ -102,6 +106,26 @@ iframe {
     color: var(--muted);
   }
 
+  .text-secondary {
+    color: var(--secondary);
+  }
+
+  .text-secondary-soft {
+    color: rgb(var(--secondary-rgb) / 0.9);
+  }
+
+  .text-secondary-muted {
+    color: rgb(var(--secondary-rgb) / 0.78);
+  }
+
+  .border-secondary-soft {
+    border-color: rgb(var(--secondary-rgb) / 0.24);
+  }
+
+  .bg-secondary-soft {
+    background-color: rgb(var(--secondary-rgb) / 0.1);
+  }
+
   .heading-balance {
     text-wrap: balance;
   }
@@ -114,7 +138,8 @@ iframe {
 
   .noise-mask {
     background-image:
-      radial-gradient(circle at top, rgba(140, 216, 255, 0.16), transparent 28%),
+      radial-gradient(circle at top, rgba(140, 216, 255, 0.14), transparent 28%),
+      radial-gradient(circle at 78% 20%, rgba(13, 148, 136, 0.16), transparent 34%),
       linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 50%);
   }
 }
