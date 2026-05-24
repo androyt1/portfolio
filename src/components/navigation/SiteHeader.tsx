@@ -9,12 +9,14 @@ import {
   Menu,
   X,
 } from 'lucide-react';
-import { useState, type MouseEvent } from 'react';
+import { useEffect, useState, type MouseEvent } from 'react';
 
 import { Container } from '@/components/layout/Container';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { navigation, siteContent } from '@/data/portfolio';
 import { useDeviceProfile } from '@/hooks/use-device-profile';
+
+type NavigationHref = (typeof navigation)[number]['href'];
 
 function getSocialIcon(label: string) {
   switch (label.toLowerCase()) {
@@ -31,9 +33,59 @@ function getSocialIcon(label: string) {
 
 export function SiteHeader() {
   const { allowViewportMotion } = useDeviceProfile();
+  const [activeHref, setActiveHref] = useState<NavigationHref>(() => {
+    if (typeof window === 'undefined') {
+      return navigation[0]?.href ?? '#about';
+    }
+
+    return (
+      navigation.find((item) => item.href === window.location.hash)?.href ??
+      navigation[0]?.href ??
+      '#about'
+    );
+  });
   const [isOpen, setIsOpen] = useState(false);
 
   const closeMenu = () => setIsOpen(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const updateActiveHref = () => {
+      const headerBar = document.querySelector<HTMLElement>('[data-site-header-bar]');
+      const headerOffset = (headerBar?.getBoundingClientRect().height ?? 0) + 48;
+      let nextActiveHref: NavigationHref = navigation[0]?.href ?? '#about';
+
+      for (const item of navigation) {
+        const target = document.querySelector<HTMLElement>(item.href);
+        if (!target) {
+          continue;
+        }
+
+        const targetTop = target.offsetTop - headerOffset;
+        if (window.scrollY >= targetTop) {
+          nextActiveHref = item.href;
+        }
+      }
+
+      setActiveHref((currentHref) =>
+        currentHref === nextActiveHref ? currentHref : nextActiveHref,
+      );
+    };
+
+    updateActiveHref();
+    window.addEventListener('hashchange', updateActiveHref);
+    window.addEventListener('resize', updateActiveHref);
+    window.addEventListener('scroll', updateActiveHref, { passive: true });
+
+    return () => {
+      window.removeEventListener('hashchange', updateActiveHref);
+      window.removeEventListener('resize', updateActiveHref);
+      window.removeEventListener('scroll', updateActiveHref);
+    };
+  }, []);
 
   const scrollToSection = (href: string) => {
     if (typeof window === 'undefined' || !href.startsWith('#')) {
@@ -112,7 +164,11 @@ export function SiteHeader() {
               {navigation.map((item) => (
                 <a
                   key={item.href}
-                  className="text-sm text-white/70 transition-colors hover:text-white"
+                  className={`text-sm transition-colors ${
+                    activeHref === item.href
+                      ? 'text-teal-200'
+                      : 'text-white/70 hover:text-white'
+                  }`}
                   href={item.href}
                   onClick={(event) => handleNavClick(event, item.href)}
                 >
@@ -175,7 +231,11 @@ export function SiteHeader() {
                 <nav className="grid gap-1">
                   {navigation.map((item) => (
                     <a
-                      className="rounded-2xl px-3 py-3 text-sm font-medium text-white/78 transition hover:bg-white/6 hover:text-white"
+                      className={`rounded-2xl px-3 py-3 text-sm font-medium transition ${
+                        activeHref === item.href
+                          ? 'border border-[#0d9488]/24 bg-[#0d9488]/10 text-teal-100'
+                          : 'text-white/78 hover:bg-white/6 hover:text-white'
+                      }`}
                       href={item.href}
                       key={item.href}
                       onClick={(event) => handleNavClick(event, item.href)}
