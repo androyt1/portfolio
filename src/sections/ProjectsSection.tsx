@@ -9,6 +9,29 @@ import { projects } from '@/data/portfolio';
 
 export function ProjectsSection() {
   const { resolvedTheme } = useTheme();
+  const isLightTheme = resolvedTheme === 'light';
+  const outcomeClass = isLightTheme ? 'text-slate-500' : 'text-white/42';
+  const titleClass = isLightTheme ? 'text-slate-950' : 'text-white';
+  const caseStudyClass = isLightTheme
+    ? 'rounded-full border border-[#0d9488]/26 bg-[#0d9488]/12 px-3 py-2 text-xs uppercase tracking-[0.35em] text-[#0f766e] shadow-[0_10px_22px_rgba(13,148,136,0.08)]'
+    : 'rounded-full border border-[#0d9488]/26 bg-[#0d9488]/10 px-3 py-2 text-xs uppercase tracking-[0.35em] text-teal-100/88';
+  const previewShellClass = isLightTheme
+    ? 'relative overflow-hidden rounded-[1.6rem] border border-[#0d9488]/20 bg-white/78 p-5 shadow-[0_18px_40px_rgba(148,163,184,0.12)]'
+    : 'relative overflow-hidden rounded-[1.6rem] border border-[#0d9488]/18 p-5';
+  const previewOverlayClass = isLightTheme
+    ? 'absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.86),transparent_54%),linear-gradient(180deg,rgba(255,255,255,0.14),rgba(255,255,255,0.02))]'
+    : 'absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_52%)]';
+  const browserDotPrimaryClass = isLightTheme ? 'bg-slate-400/70' : 'bg-white/45';
+  const browserDotSecondaryClass = isLightTheme ? 'bg-slate-400/30' : 'bg-white/18';
+  const detailCardClass = isLightTheme
+    ? 'rounded-2xl border border-slate-900/8 bg-white/82 p-4 shadow-[0_12px_28px_rgba(148,163,184,0.12)]'
+    : 'rounded-2xl border border-[#0d9488]/18 bg-black/18 p-4';
+  const detailLabelClass = isLightTheme ? 'text-slate-500' : 'text-white/36';
+  const detailTextClass = isLightTheme ? 'text-slate-800' : 'text-white/76';
+  const descriptionClass = isLightTheme ? 'text-slate-700' : 'text-white/65';
+  const stackChipClass = isLightTheme
+    ? 'rounded-full border border-[#0d9488]/20 bg-white/84 px-3 py-2 text-sm text-slate-700 shadow-[0_10px_20px_rgba(148,163,184,0.08)]'
+    : 'rounded-full border border-[#0d9488]/18 bg-[#0d9488]/8 px-3 py-2 text-sm text-white/72';
   const liveButtonClass =
     resolvedTheme === 'light'
       ? 'inline-flex items-center gap-2 rounded-full border border-[#0d9488]/28 bg-[#fbfffe] px-4 py-3 text-sm font-semibold text-slate-950 shadow-[0_12px_28px_rgba(13,148,136,0.1)] transition hover:border-[#0d9488]/42 hover:bg-[#dffaf4]'
@@ -52,42 +75,40 @@ export function ProjectsSection() {
                 <div className="space-y-5">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className="text-xs uppercase tracking-[0.4em] text-white/42">
+                      <p className={`text-xs uppercase tracking-[0.4em] ${outcomeClass}`}>
                         {project.outcome}
                       </p>
-                      <h3 className="mt-3 text-2xl font-semibold text-white">
+                      <h3 className={`mt-3 text-2xl font-semibold ${titleClass}`}>
                         {project.title}
                       </h3>
                     </div>
-                    <div className="rounded-full border border-[#0d9488]/26 bg-[#0d9488]/10 px-3 py-2 text-xs uppercase tracking-[0.35em] text-teal-100/88">
+                    <div className={caseStudyClass}>
                       Case study
                     </div>
                   </div>
 
-                  <div
-                    className={`relative overflow-hidden rounded-[1.6rem] border border-[#0d9488]/18 bg-gradient-to-br ${project.accent} p-5`}
-                  >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_52%)]" />
+                  <div className={`${previewShellClass} bg-gradient-to-br ${project.accent}`}>
+                    <div className={previewOverlayClass} />
                     <div className="relative flex min-h-44 flex-col justify-between">
                       <div className="flex items-center gap-2">
-                        <span className="h-2.5 w-2.5 rounded-full bg-white/45" />
-                        <span className="h-2.5 w-2.5 rounded-full bg-white/18" />
-                        <span className="h-2.5 w-2.5 rounded-full bg-white/18" />
+                        <span className={`h-2.5 w-2.5 rounded-full ${browserDotPrimaryClass}`} />
+                        <span className={`h-2.5 w-2.5 rounded-full ${browserDotSecondaryClass}`} />
+                        <span className={`h-2.5 w-2.5 rounded-full ${browserDotSecondaryClass}`} />
                       </div>
                       <div className="grid gap-3 sm:grid-cols-2">
-                        <div className="rounded-2xl border border-[#0d9488]/18 bg-black/18 p-4">
-                          <p className="text-xs uppercase tracking-[0.35em] text-white/36">
+                        <div className={detailCardClass}>
+                          <p className={`text-xs uppercase tracking-[0.35em] ${detailLabelClass}`}>
                             Focus
                           </p>
-                          <p className="mt-3 text-sm leading-6 text-white/76">
+                          <p className={`mt-3 text-sm leading-6 ${detailTextClass}`}>
                             {project.highlight}
                           </p>
                         </div>
-                        <div className="rounded-2xl border border-[#0d9488]/18 bg-black/18 p-4">
-                          <p className="text-xs uppercase tracking-[0.35em] text-white/36">
+                        <div className={detailCardClass}>
+                          <p className={`text-xs uppercase tracking-[0.35em] ${detailLabelClass}`}>
                             Result
                           </p>
-                          <p className="mt-3 text-sm leading-6 text-white/76">
+                          <p className={`mt-3 text-sm leading-6 ${detailTextClass}`}>
                             {project.outcome}
                           </p>
                         </div>
@@ -95,16 +116,13 @@ export function ProjectsSection() {
                     </div>
                   </div>
 
-                  <p className="text-base leading-7 text-white/65">
+                  <p className={`text-base leading-7 ${descriptionClass}`}>
                     {project.description}
                   </p>
 
                   <div className="flex flex-wrap gap-2">
                     {project.stack.map((item) => (
-                      <span
-                        className="rounded-full border border-[#0d9488]/18 bg-[#0d9488]/8 px-3 py-2 text-sm text-white/72"
-                        key={item}
-                      >
+                      <span className={stackChipClass} key={item}>
                         {item}
                       </span>
                     ))}
