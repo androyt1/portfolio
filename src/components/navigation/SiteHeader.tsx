@@ -12,6 +12,7 @@ import {
 import { useEffect, useState, type MouseEvent } from 'react';
 
 import { Container } from '@/components/layout/Container';
+import { ThemeSwitcher } from '@/components/theme/ThemeSwitcher';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { navigation, siteContent } from '@/data/portfolio';
 import { useDeviceProfile } from '@/hooks/use-device-profile';
@@ -178,6 +179,7 @@ export function SiteHeader() {
             </nav>
 
             <div className="flex items-center gap-2">
+              <ThemeSwitcher className="hidden md:inline-flex" />
               <a
                 aria-label="Email"
                 className="hidden h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:text-white sm:flex"
@@ -246,6 +248,13 @@ export function SiteHeader() {
                 </nav>
 
                 <div className="mt-4 grid gap-3 border-t border-white/10 pt-4">
+                  <div className="space-y-2">
+                    <p className="px-1 text-xs uppercase tracking-[0.35em] text-white/45">
+                      Theme
+                    </p>
+                    <ThemeSwitcher showLabels />
+                  </div>
+
                   <MagneticButton
                     className="w-full"
                     download

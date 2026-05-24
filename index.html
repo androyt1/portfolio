@@ -17,6 +17,33 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <title>Senior Frontend & Full-Stack Engineer</title>
+    <script>
+      (() => {
+        const storageKey = 'portfolio-theme-preference';
+        const storedTheme = window.localStorage.getItem(storageKey);
+        const themePreference =
+          storedTheme === 'light' || storedTheme === 'dark' || storedTheme === 'system'
+            ? storedTheme
+            : 'system';
+        const resolvedTheme =
+          themePreference === 'system'
+            ? window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light'
+            : themePreference;
+
+        document.documentElement.dataset.theme = resolvedTheme;
+        document.documentElement.dataset.themePreference = themePreference;
+
+        const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+        if (themeColorMeta) {
+          themeColorMeta.setAttribute(
+            'content',
+            resolvedTheme === 'dark' ? '#05070b' : '#f4f7fb',
+          );
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
