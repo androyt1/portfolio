@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 
+import { useTheme } from '@/components/theme/ThemeProvider';
 import { useDeviceProfile } from '@/hooks/use-device-profile';
 import { TextReveal } from '@/components/ui/TextReveal';
 
@@ -15,6 +16,13 @@ export function SectionHeading({
   description,
 }: SectionHeadingProps) {
   const { allowViewportMotion } = useDeviceProfile();
+  const { resolvedTheme } = useTheme();
+  const titleHiddenColor =
+    resolvedTheme === 'dark' ? 'rgba(5, 7, 11, 0.98)' : 'rgba(244, 247, 251, 0.98)';
+  const titleRevealColor =
+    resolvedTheme === 'dark' ? 'rgba(246, 247, 251, 1)' : 'rgba(15, 23, 42, 1)';
+  const descriptionRevealColor =
+    resolvedTheme === 'dark' ? 'rgba(246, 247, 251, 0.62)' : 'rgba(51, 65, 85, 0.84)';
 
   if (!allowViewportMotion) {
     return (
@@ -54,8 +62,8 @@ export function SectionHeading({
           amount={0.6}
           delay={0.04}
           disabled={!allowViewportMotion}
-          hiddenColor="rgba(5, 7, 11, 0.98)"
-          revealColor="rgba(246, 247, 251, 1)"
+          hiddenColor={titleHiddenColor}
+          revealColor={titleRevealColor}
           stagger={0.02}
           text={title}
         />
@@ -71,8 +79,8 @@ export function SectionHeading({
           amount={0.7}
           delay={0.12}
           disabled={!allowViewportMotion}
-          hiddenColor="rgba(5, 7, 11, 0.98)"
-          revealColor="rgba(246, 247, 251, 0.62)"
+          hiddenColor={titleHiddenColor}
+          revealColor={descriptionRevealColor}
           stagger={0.012}
           text={description}
         />
