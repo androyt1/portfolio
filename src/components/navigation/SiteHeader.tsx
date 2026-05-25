@@ -12,7 +12,6 @@ import {
 import { useEffect, useState, type MouseEvent } from 'react';
 
 import { Container } from '@/components/layout/Container';
-import { ThemeSwitcher } from '@/components/theme/ThemeSwitcher';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { navigation, siteContent } from '@/data/portfolio';
 import { useDeviceProfile } from '@/hooks/use-device-profile';
@@ -179,7 +178,6 @@ export function SiteHeader() {
             </nav>
 
             <div className="flex items-center gap-2">
-              <ThemeSwitcher />
               <a
                 aria-label="Email"
                 className="hidden h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:text-white sm:flex"

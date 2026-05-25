@@ -172,7 +172,7 @@ export function ResumeChatWidget() {
         {isOpen ? (
           <motion.section
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            className={`surface-strong pointer-events-auto flex max-h-[min(36rem,calc(100vh-5rem))] flex-col overflow-hidden rounded-[1.9rem] bg-[color:var(--panel-strong)] ${panelWidthClass}`}
+            className={`surface-strong pointer-events-auto flex max-h-[min(36rem,calc(100vh-5rem))] flex-col overflow-hidden rounded-[1.9rem] bg-[#08111a]/96 ${panelWidthClass}`}
             exit={{ opacity: 0, scale: 0.98, y: 14 }}
             initial={{ opacity: 0, scale: 0.98, y: 16 }}
             transition={
@@ -323,7 +323,7 @@ export function ResumeChatWidget() {
       <motion.button
         animate={{ opacity: 1, y: 0 }}
         aria-label="Open resume chat"
-        className="pointer-events-auto mt-3 inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/14 bg-[color:var(--panel)] text-white shadow-[0_18px_48px_rgba(0,0,0,0.28)] transition-colors hover:border-[#0d9488]/28 hover:bg-white/10"
+        className="pointer-events-auto mt-3 inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/14 bg-[#0b121c]/94 text-white shadow-[0_18px_48px_rgba(0,0,0,0.28)] transition-colors hover:border-[#0d9488]/28 hover:bg-[#101925]"
         initial={{ opacity: 0, y: 14 }}
         onClick={() => setIsOpen(true)}
         transition={
